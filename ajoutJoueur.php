@@ -18,17 +18,21 @@
                 $poids = $_POST['poids'];
                 $taille = $_POST['taille'];
                 
-                $server="mysql:host=localhost;"
-                $db="test"
+                $db="test";
                 $login="root";
                 $mdp="";
-                ///Connexion au serveur MySQL
-                 $link = mysqli_connect($server, $login, $mdp, $db) or die("Error " . mysqli_error($link));
-
-                ///Verification de la connexion
-                if (mysqli_connect_errno()) {
-                    print("Connect failed: \n" . mysqli_connect_error());
-                    exit();
+                try {
+                    $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
+                }
+                catch (Exeption $e) {
+                    die('Error :' . $e->getMessage());
+                }
+                $req = $linkpdo->prepare("INSERT INTO test.joueur(nom,prenom,dateDeNaissance,poids,taille) VALUES(:nom,:prenom,:dateDeNaissance,:poids,:taille)");
+                $req->execute(array('nom'=> $nom, 'prenom' => $prenom, 'dateDeNaissance' => $dateDeNaissance, 'poids' => $poids, 'taille' => $taille));
+                if ($req != FALSE) {
+                    print("Ajout effectuer avec succés");
+                } else {
+                    print("Erreur execute");
                 }
             }
         ?>

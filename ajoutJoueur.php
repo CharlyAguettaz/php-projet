@@ -6,8 +6,9 @@
             Date de naissance : <input type="text" name="dateDeNaissance"><br />
             Poids : <input type="text" name="poids"><br />
             Taille : <input type="text" name="taille"><br />
+            Numéro de lincence : <input type="text" name="NumLicence"><br />
             Poste Préféré : <input type="text" name="postePrefere"><br />
-            photo : <input type="text" name="photo"><br />
+            Photo : <input type="text" name="photo"><br />
             <input type="submit" value="Valider">
         </form>
         <?php

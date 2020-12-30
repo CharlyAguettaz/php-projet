@@ -5,5 +5,7 @@
                <input type="submit" values="Rechercher"><br />
           </form>
           <?php
-               echo "Salut charly"
+               if (!empty($_POST("nom"))) {
+                    
+               }
           ?>

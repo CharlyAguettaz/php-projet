@@ -1,3 +1,9 @@
-<?php
-     echo "Salut charly"
-?>
+<html>
+     <body>
+          <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+               <input type="text" name="nom">
+               <input type="submit" values="Rechercher"><br />
+          </form>
+          <?php
+               echo "Salut charly"
+          ?>

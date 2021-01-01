@@ -32,9 +32,15 @@
                               echo $res['nom']." ";
                               echo $res['prenom']."<br />";
                               echo "Date de naissance : ".$res['dateDeNaissance']."<br />";
+                              echo "<a href='http://localhost/php-projet/modifier.php?id=$id'>Modifier</a>"." ";
                               ?>
-                              <a href="http://localhost/php-projet/modifier.php?id=$id">Modifier</a>
-                              <a href="http://localhost/php-projet/suppression.php?id=$id">Modifier</a>
+                              <form action="Suppression.php" method="post">
+                                   <?php
+                                        echo "<input type='hidden' value=$id name='id'>"."<br />";
+                                        echo "<input type='submit' value='Supprimer'>"."<br />";
+                                   ?>
+                              </form>
+                              <?php
                               echo "<br />";
                          } while ($res = $req->fetch());
                     }

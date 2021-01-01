@@ -4,7 +4,6 @@
     if  (isset($_POST['id']) && !empty($_POST['id'])) {  
 
         $id = htmlentities($_POST['id']);
-        echo $id;
         $db = 'football';
         $login = 'root';
         $mdp = '';
@@ -20,7 +19,7 @@
         $req->execute(array($id));
         $res = $req->fetch();
 
-        if ($res == false) {
+        if ($req == false) {
             echo "Erreur lors de la suppression";
         } else {
             echo "Joueurs supprimé avec succés";

@@ -17,7 +17,7 @@
             <input type="submit" value="Valider">
         </form>
         <?php
-            if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille'])) {
+            if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut']) && !empty($_POST['photo'])) {
                 $nom = htmlentities($_POST['nom']);
                 $prenom = htmlentities($_POST['prenom']); 
                 $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);

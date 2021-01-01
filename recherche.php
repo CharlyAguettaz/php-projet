@@ -31,13 +31,11 @@
                               echo "Numéro de Licence : ".$res['numLicence']."<br />";
                               echo $res['nom']." ";
                               echo $res['prenom']."<br />";
-                              echo "Date de naissance : ".$res['dateDeNaissance'];
+                              echo "Date de naissance : ".$res['dateDeNaissance']."<br />";
                               ?>
                               <a href="http://localhost/php-projet/modifier.php?id=$id">Modifier</a>
-                              <form action="Suppression.php" method="post">
-                                   <input type='text' value='$id' name='id'>
-                                   <input type='submit' value='Supprimer'>
-                              <?php
+                              <a href="http://localhost/php-projet/suppression.php?id=$id">Modifier</a>
+                              echo "<br />";
                          } while ($res = $req->fetch());
                     }
                }

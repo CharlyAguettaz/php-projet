@@ -4,7 +4,7 @@
     if  (isset($_POST['id']) && !empty($_POST['id'])) {  
 
         $id = htmlentities($_POST['id']);
-
+        echo $id;
         $db = 'football';
         $login = 'root';
         $mdp = '';
@@ -16,7 +16,7 @@
             die('Erreur : '. $e->getMessage());    
         } 
         
-        $req = $linkpdo->prepare("DELETE * FROM joueur WHERE numLicence = ?");
+        $req = $linkpdo->prepare("DELETE FROM players WHERE numLicence = ?");
         $req->execute(array($id));
         $res = $req->fetch();
 

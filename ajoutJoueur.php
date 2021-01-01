@@ -1,7 +1,7 @@
 <html>
     <body>
         <p>
-            <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a>
+            <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a>
         </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">

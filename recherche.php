@@ -1,7 +1,7 @@
 <html>
      <body>
           <p>
-               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a>
+               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a>
           </p>
           <head>Rechercher joueurs</head>
@@ -32,11 +32,18 @@
                               echo $res['nom']." ";
                               echo $res['prenom']."<br />";
                               echo "Date de naissance : ".$res['dateDeNaissance']."<br />";
-                              echo "<a href='http://localhost/php-projet/modifier.php?id=$id'>Modifier</a>"." ";
+                              echo "Poids : ".$res['poids']."<br />";
+                              echo "Taille : ".$res['taille']."<br />";
+                              echo "Photo : "."<br />";
+                              echo "Poste préférer : ".$res['postePrefere']."<br />";
+                              echo "Statut : ".$res['statut']."<br />";
                               ?>
+                              <form action="modifier.php" method="post">
+                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                   <input type='submit' value='Modifier'>
                               <form action="Suppression.php" method="post">
-                                        <input type='hidden' value="<?php echo $id ?>" name='id'><br />
-                                        <input type='submit' value='Supprimer'><br />
+                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                   <input type='submit' value='Supprimer'><br />
                               </form>
                               <?php
                               echo "<br />";

@@ -1,6 +1,5 @@
 
 <?php
-
     if  (isset($_POST['id']) && !empty($_POST['id'])) {  
 
         $id = htmlentities($_POST['id']);
@@ -24,6 +23,8 @@
         } else {
             echo "Joueurs supprimé avec succés";
         }
+
+        header("location:".  $_SERVER['HTTP_REFERER']); 
     }  
       
 ?>

@@ -35,10 +35,8 @@
                               echo "<a href='http://localhost/php-projet/modifier.php?id=$id'>Modifier</a>"." ";
                               ?>
                               <form action="Suppression.php" method="post">
-                                   <?php
-                                        echo "<input type='hidden' value=$id name='id'>"."<br />";
-                                        echo "<input type='submit' value='Supprimer'>"."<br />";
-                                   ?>
+                                        <input type='hidden' value="<?php echo $id ?>" name='id'><br />
+                                        <input type='submit' value='Supprimer'><br />
                               </form>
                               <?php
                               echo "<br />";

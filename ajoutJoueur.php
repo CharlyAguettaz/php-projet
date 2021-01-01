@@ -7,13 +7,20 @@
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             Nom : <input type="text" name="nom"><br />
             Prenom : <input type="text" name="prenom"><br />
-            Date de naissance : <input type="text" name="dateDeNaissance"><br />
-            Poids : <input type="text" name="poids"><br />
-            Taille : <input type="text" name="taille"><br />
+            Date de naissance : <input type="date" name="dateDeNaissance"><br />
+            Poids : <input type="number" name="poids" ><br />
+            Taille : <input type="number" name="taille" ><br />
             Numéro de licence : <input type="text" name="numLicence"><br />
-            Poste Préféré : <input type="text" name="postePrefere"><br />
-            Photo : <input type="text" name="photo"><br />
-            Statut : <input type="text" name="statut"><br />
+            Poste Préféré : <input type="text" name="postePrefere" maxlength="2" size="3"><br />
+            Photo : <input type="file" name="photo" accept="image/png,image/jpg"><br />
+            Statut : <label for="Actif">Actif</label>
+            <input type="radio" id="Actif" name="statut" value="Actif" checked>
+            <label for="Blessé">Blessé</label>
+            <input type="radio" id="Blessé" name="statut" value="Blessé">
+            <label for="Suspendu">Suspendu</label>
+            <input type="radio" id="Suspendu" name="statut" value="Suspendu">
+            <label for="Absent">Absent</label>
+            <input type="radio" id="Absent" name="statut" value="Absent"><br />
             <input type="submit" value="Valider">
         </form>
         <?php

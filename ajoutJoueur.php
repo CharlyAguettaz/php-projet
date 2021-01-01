@@ -38,10 +38,9 @@
                     die('Error :' . $e->getMessage());
                 }
                 $req = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
-                $req->execute(array('numLicence'=>$numLicence, 'nom'=> $nom, 'prenom' => $prenom, 'photo'=>$photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere'=>$postePrefere, 'statut'=>$statut));
+                $req->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
                 if ($req != FALSE) {
                     print("Ajout effectuer avec succés");
-                    print($req->queryString);
                 } else {
                     print("Erreur execute");
                 }

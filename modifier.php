@@ -20,14 +20,14 @@
                 $res=$req->fetch();
             }
         ?>
-                <form action=<?php $_SERVER['PHP_SELF']?> method="post">
+            <form action=<?php $_SERVER['PHP_SELF']?> method="post">
                 Numéro de Licence : <input readonly type="texte" value="<?php echo $res['numLicence'] ?>"><br />
-                Nom : <input type="text" value="<?php echo $res['nom'] ?>"><br /> 
-                Prenom : <input type="text" value="<?php echo $res['prenom'] ?>"><br /> 
-                Date de naissance : <input type="date" value="<?php echo $res['dateDeNaissance'] ?>"><br /> 
-                Poids : <input type="number" value="<?php echo $res['poids'] ?>" ><br />
-                Taille : <input type="number" value="<?php echo $res['taille'] ?>" ><br />
-                Poste Préféré : <input type="text" value="<?php echo $res['postePrefere'] ?>" maxlength="2" size="3"><br />
+                 Nom : <input type="text" value="<?php echo $res['nom'] ?>" name='nom'><br /> 
+                Prenom : <input type="text" value="<?php echo $res['prenom'] ?>" name='prenom'><br /> 
+                Date de naissance : <input type="date" value="<?php echo $res['dateDeNaissance'] ?>" name='dateDeNaissance'><br /> 
+                Poids : <input type="number" value="<?php echo $res['poids'] ?>" name='poids'><br />
+                Taille : <input type="number" value="<?php echo $res['taille'] ?>" name='Taille'><br />
+                Poste Préféré : <input type="text" value="<?php echo $res['postePrefere'] ?>" maxlength="2" size="3" name='PostePrefere'><br />
                 Photo : <input type="file" name="photo" accept="image/png,image/jpg" value=<?php echo $res['photo'] ?>><br />
                 Statut : <label for="Actif">Actif</label>
                 <input type="radio" id="Actif" name="statut" value="Actif" checked>
@@ -38,7 +38,7 @@
                 <label for="Absent">Absent</label>
                 <input type="radio" id="Absent" name="statut" value="Absent"><br />
                 <input type="submit" value="Valider">
-                </form>
+            </form>
     </body>
 </html>
 

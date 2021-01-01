@@ -11,23 +11,23 @@ DELETE * FROM users;
 
 -- Joueurs
 CREATE TABLE players(
-   Numero_de_licence VARCHAR(50),
-   Nom VARCHAR(50),
-   Prenom VARCHAR(50),
-   Photo VARCHAR(255),
-   Date_de_naissance DATE,
-   Taille SMALLINT,
-   Poids SMALLINT,
-   Poste_prefere char(2),
-   Statut VARCHAR(50),
-   PRIMARY KEY(Numero_de_licence)
+   numLicence VARCHAR(50),
+   nom VARCHAR(50),
+   prenom VARCHAR(50),
+   photo VARCHAR(255),
+   dateDeNaissance DATE,
+   taille SMALLINT,
+   poids SMALLINT,
+   postePrefere char(2),
+   statut VARCHAR(50),
+   PRIMARY KEY(numLicence)
 );
 
-INSERT INTO players(Numero_de_licence, Nom, Prenom, Photo, Date_de_naissance, Taille, Poids, Poste_prefere, Statut) VALUES
+INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES
 ("A2345678", "Beyssen", "Antoine", "antoine-beyssen.png", "2002-04-06", 184, 74, "DH", "Actif"),
 ("B3456789", "Princeau", "Matthieu", "matthieu-princeau.png", "1998-02-15", 172, 70, "CT", "Actif");
 
-DELETE * FROM players;
+DELETE FROM `players`;
 
 -- rencontre
 CREATE TABLE rencontre(
@@ -42,8 +42,8 @@ CREATE TABLE rencontre(
 );
 
 INSERT INTO rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_rencontre, Points_equipe, Points_adversaire) VALUES
-("2020-12-16", "14:39:00", "Ta mere", "Stade de France", 9, 8),
-("2020-12-15", "18:00:00", "Ton pere", "Stade de France", 6, 9),
-("2020-12-31", "18:00:00", "Ton pere", "Stade de France", -1, -1),
-("2020-12-17", "18:00:00", "Ton pere", "Stade de France", -1, -1)
+("2020-12-16", "14:39:00", "Les bleus", "Stade de France", 9, 8),
+("2020-12-15", "18:00:00", "Les rouges", "Stade de France", 6, 9),
+("2020-12-31", "18:00:00", "Les verts", "Stade de France", -1, -1),
+("2020-12-17", "18:00:00", "Les oranges", "Stade de France", -1, -1)
 ;

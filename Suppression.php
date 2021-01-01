@@ -1,53 +1,30 @@
 
 <?php
 
-$nom = '';
-$prenom = '';
+    if  (isset($_POST['id']) && !empty($_POST['id'])) {  
 
-if  (isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prenom']) && !empty($_POST['prenom'])) {  
+        $id = htmlentities($_POST['id']);
 
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
+        $db = 'football';
+        $login = 'root';
+        $mdp = '';
 
-    $db = 'football';
-    $login = 'root';
-
-    try  {
-        $linkpdo = new PDO("mysql:host=localhost;dbname=$db",$login);
-    }
-    catch (Exception $e) { 
-        die('Erreur : '. $e->getMessage());    
-    } 
-    
-    $req = $linkpdo->prepare("DELETE * FROM joueur WHERE nom = ? AND prenom = ?");
-    $req->execute(array(htmlentities($_POST['nom'])));
-    $res = $req->fetch();
-
-    if ($res == false) {
-        echo "Aucun joueur de ce nom n'existe !";
-    } 
-        $id = $res['id'];
-
+        try  {
+            $linkpdo = new PDO("mysql:host=localhost;dbname=$db",$login,$mdp);
+        }
+        catch (Exception $e) { 
+            die('Erreur : '. $e->getMessage());    
         } 
+        
+        $req = $linkpdo->prepare("DELETE * FROM joueur WHERE numLicence = ?");
+        $req->execute(array($id));
+        $res = $req->fetch();
+
+        if ($res == false) {
+            echo "Erreur lors de la suppression";
+        } else {
+            echo "Joueurs supprimé avec succés";
+        }
+    }  
       
 ?>
-
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Document sans titre</title>
-</head>
-
-<body>
-	
-	<h1>Suppression de joueur</h1>
-		<form action= "<?php $_SERVER['PHP_SELF']?>" method="post">
-             <p>nom : <input type="text" name="nom" /></p>
-             <p>prenom : <input type="text" name="nom" /></p>
-			<p> <input type="submit" value="supprimer" name="supprimer" > 
-				<input type="submit" value="reset" name="reset" >
-			</p>
-		</form>
-</body>
-</html>

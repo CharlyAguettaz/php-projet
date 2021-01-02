@@ -16,7 +16,7 @@
                          die('Error :' . $e->getMessage());
                     }
                     $req = $linkpdo->prepare("SELECT * FROM football.rencontre");
-                    $req->execute(array("%".htmlentities($_POST['nom'])."%"));
+                    $req->execute();
                     $res=$req->fetch();
                     if ($res == false) {
                          echo "Aucun joueur de ce nom n'existe !";

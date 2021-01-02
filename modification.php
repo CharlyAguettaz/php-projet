@@ -22,14 +22,19 @@
         $req = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere, statut = :statut WHERE numLicence = :numLicence");
         $req->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
         if ($req != FALSE) {
-            print("Modification effectué avec succés");
+            print("Modification effectué avec succés !");
         } else {
             print("Erreur execute");
         }
-        header("location:recherche.php");
     } else {
-        header("location:recherche.php");
+        echo "Erreur de modification : Erreur sur la séléction des informations par l'utilisateur";
     }
-    
-    
 ?>
+
+<html>
+    <body>
+        <p>
+            <a href="recherche.php">Revenir sur la page de recherche<a>
+        <p>
+    </body>
+</html>

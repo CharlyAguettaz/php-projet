@@ -13,15 +13,13 @@
             Numéro de licence : <input type="text" name="numLicence"><br />
             Poste Préféré : <input type="text" name="postePrefere" maxlength="2" size="3"><br />
             Photo : <input type="file" name="photo" accept="image/png,image/jpg"><br />
-            Statut : <label for="Actif">Actif</label>
-            <input type="radio" id="Actif" name="statut" value="Actif" checked>
-            <label for="Blessé">Blessé</label>
-            <input type="radio" id="Blessé" name="statut" value="Blessé">
-            <label for="Suspendu">Suspendu</label>
-            <input type="radio" id="Suspendu" name="statut" value="Suspendu">
-            <label for="Absent">Absent</label>
-            <input type="radio" id="Absent" name="statut" value="Absent"><br />
-            <input type="submit" value="Valider">
+            Statut : <select name='statut'>
+                        <option value='Actif'>Actif</option>
+                        <option value='Blesse'>Bléssé</option>
+                        <option value='Suspendu'>Suspendu</option>
+                        <option value='Absent'>Absent</option>
+                    </select><br />
+            <input type='Submit' value='Valider'>
         </form>
         <?php
             if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut']) && !empty($_POST['photo'])) {

@@ -14,7 +14,7 @@
             die('Erreur : '. $e->getMessage());    
         } 
         
-        $req = $linkpdo->prepare("DELETE FROM players WHERE numLicence = ?");
+        $req = $linkpdo->prepare("DELETE FROM football.players WHERE numLicence = ?");
         $req->execute(array($id));
         $res = $req->fetch();
 

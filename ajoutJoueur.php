@@ -5,15 +5,23 @@
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a>
         </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            Nom : <input type="text" name="nom"><br />
-            Prenom : <input type="text" name="prenom"><br />
-            Date de naissance : <input type="date" name="dateDeNaissance"><br />
-            Poids : <input type="number" name="poids" ><br />
-            Taille : <input type="number" name="taille" ><br />
-            Numéro de licence : <input type="text" name="numLicence"><br />
-            Poste Préféré : <input type="text" name="postePrefere" maxlength="2" size="3"><br />
-            Photo : <input type="file" name="photo" accept="image/png,image/jpg"><br />
-            Statut : <select name='statut'>
+            Nom : <input type="text" name="nom" required><br />
+            Prenom : <input type="text" name="prenom" required><br />
+            Date de naissance : <input type="date" name="dateDeNaissance" required><br />
+            Poids : <input type="number" name="poids" required ><br />
+            Taille : <input type="number" name="taille" required><br />
+            Numéro de licence : <input type="text" name="numLicence" required size="11" minlength ="10" maxlength="10"><br />
+            Poste Préféré : <select name='postePrefere' required>
+                                <option></option>
+                                <option value='AD'>Attaquant droit</option>
+                                <option value='AG'>Attaquant gauche</option>
+                                <option value='DD'>Défenseur droit</option>
+                                <option value='DG'>Défenseur gauche</option>
+                                <option value='GB'>Gardien de but</option>
+                            </select><br />
+            Photo : <input type="file" name="photo" accept="image/png,image/jpg" required><br />
+            Statut : <select name='statut' required>
+                        <option></option>
                         <option value='Actif'>Actif</option>
                         <option value='Blesse'>Bléssé</option>
                         <option value='Suspendu'>Suspendu</option>

@@ -5,6 +5,7 @@
                
           </p>
           <head>Rencontre</head>
+
           <?php
                     $db = 'football';
                     $login = 'root';
@@ -15,22 +16,25 @@
                     catch (Exeption $e) {
                          die('Error :' . $e->getMessage());
                     }
-                    $req = $linkpdo->prepare("SELECT * FROM football.rencontre");
-                    $req->execute(array("%".htmlentities($_POST['nom'])."%"));
+                    $req = $linkpdo->prepare("SELECT * FROM football.rencontre ORDER BY Date_rencontre DESC" );
+                    $req->execute();
                     $res=$req->fetch();
                     if ($res == false) {
                          echo "Aucun joueur de ce nom n'existe !";
                     } else {
+     
                          do {
+                              $id = $res['Id_rencontre'];
                               echo "Adversaire : ".$res['Nom_adversaire']."<br />";
                               echo $res['Date_rencontre']." ";
                               echo $res['Heure_rencontre']."<br />";
                               echo "Lieu : ".$res['Lieu_de_rencontre']."<br />";
-                              echo "Score : Agen ".$res['Point_equipe']." / ".$res['Point_adversaire']." ".$res['Nom_adversaire'];
+                              echo "Score : Agen ".$res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'];
                               ?>
                               <form action="modifierRencontre.php" method="post">
                                    <input type='hidden' value="<?php echo $id ?>" name='id'>
                                    <input type='submit' value='Modifier'>
+                              </form>
                               <form action="Suppression.php" method="post">
                                    <input type='hidden' value="<?php echo $id ?>" name='id'>
                                    <input type='submit' value='Supprimer'><br />

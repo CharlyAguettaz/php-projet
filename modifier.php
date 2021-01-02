@@ -50,9 +50,9 @@
                     $statut = htmlentities($_POST['statut']);
                     $photo = htmlentities($_POST['photo']);
 
-                    $req = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere WHERE numLicence = :numLicence");
-                    $req->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
-                    if ($req != FALSE) {
+                    $req2 = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere WHERE numLicence = :numLicence");
+                    $req2->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
+                    if ($req2 != FALSE) {
                         print("Modification effectué avec succés");
                     } else {
                         print("Erreur execute");

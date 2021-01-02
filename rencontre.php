@@ -16,6 +16,7 @@
                     catch (Exeption $e) {
                          die('Error :' . $e->getMessage());
                     }
+
                     $req = $linkpdo->prepare("SELECT * FROM football.rencontre ORDER BY Date_rencontre DESC" );
                     $req->execute();
                     $res=$req->fetch();

@@ -12,24 +12,24 @@
         $req = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence LIKE ?");
         $req->execute(array(htmlentities($_POST['id'])));
         $res=$req->fetch();
-    
-        if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut'])) {
-            $nom = htmlentities($_POST['nom']);
-            $prenom = htmlentities($_POST['prenom']); 
-            $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
-            $poids = htmlentities($_POST['poids']);
-            $taille = htmlentities($_POST['taille']);
-            $postePrefere = htmlentities($_POST['postePrefere']);
-            $statut = htmlentities($_POST['statut']);
-            $photo = htmlentities($_POST['photo']);
+    }
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut'])) {
+        $nom = htmlentities($_POST['nom']);
+        $prenom = htmlentities($_POST['prenom']); 
+        $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
+        $poids = htmlentities($_POST['poids']);
+        $taille = htmlentities($_POST['taille']);
+        $postePrefere = htmlentities($_POST['postePrefere']);
+        $statut = htmlentities($_POST['statut']);
+        $photo = htmlentities($_POST['photo']);
 
-            $req2 = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere WHERE numLicence = :numLicence");
-            $req2->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
-            if ($req2 != FALSE) {
-                print("Modification effectué avec succés");
-            } else {
-                print("Erreur execute");
-            }
+        $req2 = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere WHERE numLicence = :numLicence");
+        $req2->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
+        $res=$req2->fetch();
+        if ($req2 != FALSE) {
+            print("Modification effectué avec succés");
+        } else {
+            print("Erreur execute");
         }
     }
 ?>
@@ -40,7 +40,7 @@
             <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a>
         </p>            
-            <form action=<?php $_SERVER['PHP_SELF']?> method="post">
+            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                 Numéro de Licence : <input readonly type="texte" value="<?php echo $res['numLicence'] ?>"><br />
                 Nom : <input type="text" value="<?php echo $res['nom'] ?>" name='nom'><br /> 
                 Prenom : <input type="text" value="<?php echo $res['prenom'] ?>" name='prenom'><br /> 

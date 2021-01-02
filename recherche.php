@@ -41,6 +41,7 @@
                               <form action="modifier.php" method="post">
                                    <input type='hidden' value="<?php echo $id ?>" name='id'>
                                    <input type='submit' value='Modifier'>
+                              </form>
                               <form action="Suppression.php" method="post">
                                    <input type='hidden' value="<?php echo $id ?>" name='id'>
                                    <input type='submit' value='Supprimer'><br />

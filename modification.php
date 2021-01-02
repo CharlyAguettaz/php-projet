@@ -26,9 +26,10 @@
         } else {
             print("Erreur execute");
         }
-
+        header("location:recherche.php");
+    } else {
         header("location:recherche.php");
     }
-
+    
     
 ?>

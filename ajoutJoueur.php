@@ -51,12 +51,20 @@
                 catch (Exeption $e) {
                     die('Error :' . $e->getMessage());
                 }
-                $req = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
-                $req->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
-                if ($req != FALSE) {
-                    print("Ajout effectuer avec succés");
+
+                $req = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence LIKE ?");
+                $req->execute(array($numLicence));
+                $res=$req->fetch();
+                if($res == false) {
+                    $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
+                    $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
+                    if ($req2 != FALSE) {
+                        print("Ajout effectuer avec succés");
+                    } else {
+                        print("Erreur execute");
+                    }
                 } else {
-                    print("Erreur execute");
+                    echo "Numéro de licence déjà existante !";
                 }
             }
         ?>

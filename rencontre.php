@@ -45,6 +45,10 @@
                                    <input type='hidden' value="<?php echo $id ?>" name='id'>
                                    <input type='submit' value='Supprimer'><br />
                               </form>
+                              <form action="detailsRencontre.php" method="post">
+                                   <input type='hidden' value="<?php echo $id ?>" name ='id'>
+                                   <input type='submit' value="Détails du match">
+                              </form>
                               <?php
                               echo "<br />";
                          } while ($res = $req->fetch());

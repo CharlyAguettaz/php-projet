@@ -8,7 +8,7 @@
         </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             Date : <input type="date" name="date"><br />
-            Heure : <input type="text" name="heure"><br />
+            Heure : <input type="time" name="heure"><br />
             Adversaire : <input type="text" name="adversaire" ><br />
             Lieu : <input type="text" name="lieu"><br />
             But Pour : <input type="number" name="points_equipe" ><br />

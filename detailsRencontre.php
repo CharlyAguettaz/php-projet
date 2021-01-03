@@ -36,7 +36,7 @@
                 Score du match : Agen <?php echo $res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'] ?>
             </p>
             Attaquant droit :
-            <select name='AD'>
+            <select name='AD' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -49,7 +49,7 @@
                 ?>
             </select><br />
             Attaquant gauche :
-            <select name='AG'>
+            <select name='AG' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -62,7 +62,7 @@
                 ?>
             </select><br />
             Attaquant centre :
-            <select name='AC'>
+            <select name='AC' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -75,7 +75,7 @@
                 ?>
             </select><br />
             Défenseur droit :
-            <select name='DD'>
+            <select name='DD' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -88,7 +88,7 @@
                 ?>
             </select><br />
             Défenseur gauche :
-            <select name='DG'>
+            <select name='DG' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -101,7 +101,7 @@
                 ?>
             </select><br />
             Défenseur centre :
-            <select name='DC'>
+            <select name='DC' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -114,7 +114,7 @@
                 ?>
             </select><br />
             Gardien de but :
-            <select name='GB'>
+            <select name='GB' required>
                 <option></option>
                 <?php
                     $req2->execute();
@@ -126,6 +126,8 @@
                     }
                 ?>
             </select><br />
+            <input type="hidden" name='id' value=<?php echo $id_rencontre ?>>
+            <input type="submit" value="Valider">
         </form>
     </body>
 </html>

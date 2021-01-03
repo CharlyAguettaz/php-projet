@@ -15,6 +15,8 @@
         $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
         $req->execute(array($id_rencontre));
         $res=$req->fetch();
+        $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence FROM football.players");
+        
     }
 ?>
 
@@ -24,7 +26,100 @@
     </head>
     <body>
         <p>
-            Score du match : Agen <?php echo $res['Points_equipe']." - ".echo $res['Points_adversaire']." ".echo $res['Nom_adversaire'] ?>
+            Score du match : Agen <?php echo $res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'] ?>
         </p>
+        <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+            Attaquant droit :
+            <select name='AD'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+            Attaquant gauche :
+            <select name='AG'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+            Attaquant centre :
+            <select name='AC'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+            Défenseur droit :
+            <select name='DD'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+            Défenseur gauche :
+            <select name='DG'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+            Défenseur centre :
+            <select name='DC'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+            Gardien de but :
+            <select name='GB'>
+                <option></option>
+                <?php
+                    $req2->execute();
+                    $res2=$req2->fetch(); 
+                    if ($res2 != false) {
+                        do { ?>
+                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                        <?php } while($res2=$req2->fetch());
+                    }
+                ?>
+            </select><br />
+        </form>
     </body>
 </html>

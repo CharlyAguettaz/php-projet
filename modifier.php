@@ -37,8 +37,10 @@
                                 <option value='<?php echo $res['postePrefere'] ?>'>Valeur actuel : <?php echo $res['postePrefere'] ?></option>
                                 <option value='AD'>Attaquant droit</option>
                                 <option value='AG'>Attaquant gauche</option>
+                                <option value='AC'>Attanquant centre</option>
                                 <option value='DD'>Défenseur droit</option>
                                 <option value='DG'>Défenseur gauche</option>
+                                <option value='DC'>Défenseur centre</option>
                                 <option value='GB'>Gardien de but</option>
                             </select><br />
                 Photo : <input type="file" name="photo" accept="image/png,image/jpg" value=<?php echo $res['photo']?>> <br />

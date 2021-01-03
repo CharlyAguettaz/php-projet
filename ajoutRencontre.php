@@ -7,10 +7,10 @@
             <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
         </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            Date : <input type="date" name="date"><br />
-            Heure : <input type="time" name="heure"><br />
-            Adversaire : <input type="text" name="adversaire" ><br />
-            Lieu : <input type="text" name="lieu"><br />
+            Date : <input type="date" name="date" required><br />
+            Heure : <input type="time" name="heure" required><br />
+            Adversaire : <input type="text" name="adversaire" required ><br />
+            Lieu : <input type="text" name="lieu" required><br />
             But Pour : <input type="number" name="points_equipe" ><br />
             But Contre : <input type="number" name="points_adversaire" ><br />
 
@@ -34,12 +34,19 @@
                 catch (Exeption $e) {
                     die('Error :' . $e->getMessage());
                 }
-                $req = $linkpdo->prepare("INSERT INTO football.rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_rencontre, Points_equipe, Points_adversaire) VALUES(:date, :heure, :adversaire, :lieu, :points_equipe, :points_adversaire)");
-                $req->execute(array('date' => $date, 'heure' => $heure, 'adversaire' => $adversaire, 'lieu' => $lieu, 'points_equipe' => $points_equipe,  'points_adversaire' => $points_adversaire));
-                if ($req != FALSE) {
-                    print("Ajout effectuer avec succés");
+                $req2 = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Date_rencontre LIKE ?");
+                $req2->execute(array($date));
+                $res=$req2->fetch();
+                if ($res == false) {
+                    $req = $linkpdo->prepare("INSERT INTO football.rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_rencontre, Points_equipe, Points_adversaire) VALUES(:date, :heure, :adversaire, :lieu, :points_equipe, :points_adversaire)");
+                    $req->execute(array('date' => $date, 'heure' => $heure, 'adversaire' => $adversaire, 'lieu' => $lieu, 'points_equipe' => $points_equipe,  'points_adversaire' => $points_adversaire));
+                    if ($req != FALSE) {
+                        print("Ajout effectuer avec succés");
+                    } else {
+                        print("Erreur execute");
+                    }
                 } else {
-                    print("Erreur execute");
+                    echo "Ajout impossible, un autre match est déjà prévu a ce jour.";
                 }
             }
         ?>

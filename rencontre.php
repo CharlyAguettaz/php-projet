@@ -1,10 +1,14 @@
 <html>
+     <head>    
+          <h1>Rechercher une rencontre<br /></h1>
+     </head>
      <body>
           <p>
-               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> 
-               
+               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
+               <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
+               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
+               <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
           </p>
-          <head>Rencontre</head>
 
           <?php
                     $db = 'football';
@@ -21,7 +25,8 @@
                     $req->execute();
                     $res=$req->fetch();
                     if ($res == false) {
-                         echo "Aucun joueur de ce nom n'existe !";
+                         echo "Aucune rencontre enregister pour le moment !"."<br />";
+                         echo "<a <a href='http://localhost/php-projet/ajoutRencontre.php'>Ajouter une rencontre ici</a>";
                     } else {
      
                          do {

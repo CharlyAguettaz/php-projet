@@ -1,11 +1,14 @@
 <html>
+     <head>    
+          <h1>Rechercher un joueur<br /></h1>
+     </head>
      <body>
           <p>
                <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
-               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a>
+               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
+               <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
           </p>
-          <head>Rechercher joueurs</head>
           <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                <input type="text" name="nom">
                <input type="submit" value="Rechercher"><br />

@@ -3,7 +3,8 @@
         <p>
             <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
-            <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a>
+            <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
+            <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
         </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             Nom : <input type="text" name="nom" required><br />

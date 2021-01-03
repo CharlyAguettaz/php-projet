@@ -25,7 +25,7 @@
 <html>
     <head>
         <p>
-            Page de connexion
+            <h1>Page de connexion</h1>
         </p>
     </head>
     <body>

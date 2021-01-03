@@ -28,9 +28,16 @@
         } else {
             print("Erreur execute");
         }
-        header("location:rencontre.php");
     } else {
-        header("location:rencontre.php");
+        echo "Erreur de modification : Erreur sur la séléction des informations par l'utilisateur";
     }
     
 ?>
+
+<html>
+    <body>
+        <p>
+            <a href="recherche.php">Revenir sur la page de recherche<a>
+        <p>
+    </body>
+</html>

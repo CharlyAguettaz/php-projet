@@ -22,13 +22,19 @@
 
 <html>
     <head>
-        <h1>Detail de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
+        <h1>Details de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
     </head>
     <body>
-        <p>
-            Score du match : Agen <?php echo $res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'] ?>
-        </p>
+            <p>
+               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
+               <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
+               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
+               <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
+            </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+            <p>
+                Score du match : Agen <?php echo $res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'] ?>
+            </p>
             Attaquant droit :
             <select name='AD'>
                 <option></option>

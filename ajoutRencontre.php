@@ -4,8 +4,8 @@
                 $heure = htmlentities($_POST['heure']); 
                 $adversaire = htmlentities($_POST['adversaire']);
                 $lieu = htmlentities($_POST['lieu']);
-                $points_equipe = htmlentities($_POST['points_equipe']);
-                $points_adversaire = htmlentities($_POST['points_adversaire']);
+                $points_equipe = 0;
+                $points_adversaire = 0;
                 
                 $db = 'football';
                 $login="root";
@@ -46,8 +46,6 @@
             Heure : <input type="time" name="heure" required><br />
             Adversaire : <input type="text" name="adversaire" required ><br />
             Lieu : <input type="text" name="lieu" required><br />
-            But Pour : <input type="number" name="points_equipe" ><br />
-            But Contre : <input type="number" name="points_adversaire" ><br />
 
             <input type='Submit' value='Valider'>
         </form>

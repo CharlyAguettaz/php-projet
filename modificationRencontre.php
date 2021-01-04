@@ -7,8 +7,6 @@
         $heure = htmlentities($_POST['heure']); 
         $adversaire = htmlentities($_POST['adversaire']);
         $lieu = htmlentities($_POST['lieu']);
-        $points_equipe = htmlentities($_POST['points_equipe']);
-        $points_adversaire = htmlentities($_POST['points_adversaire']);
         
         $db = 'football';
         $login = 'root';
@@ -20,8 +18,8 @@
              die('Error :' . $e->getMessage());
         }
 
-        $req = $linkpdo->prepare("UPDATE football.rencontre SET Date_rencontre = :date, Heure_rencontre = :heure, Nom_adversaire = :adversaire, Lieu_de_rencontre = :lieu, Points_equipe = :points_equipe, Points_adversaire = :points_adversaire WHERE Id_rencontre = :Id_rencontre");
-        $req->execute(array('Id_rencontre' => $id_rencontre, 'date' => $date, 'heure' => $heure, 'adversaire' => $adversaire,  'lieu' => $lieu, 'points_equipe' => $points_equipe, 'points_adversaire' => $points_adversaire));
+        $req = $linkpdo->prepare("UPDATE football.rencontre SET Date_rencontre = :date, Heure_rencontre = :heure, Nom_adversaire = :adversaire, Lieu_de_rencontre = :lieu WHERE Id_rencontre = :Id_rencontre");
+        $req->execute(array('Id_rencontre' => $id_rencontre, 'date' => $date, 'heure' => $heure, 'adversaire' => $adversaire,  'lieu' => $lieu));
         
         if ($req != FALSE) {
             print("Modification effectué avec succés");

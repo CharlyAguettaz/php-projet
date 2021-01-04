@@ -31,8 +31,6 @@
             Heure : <input type="text" value="<?php echo $res['Heure_rencontre'] ?>" name="heure" required><br />
             Adversaire : <input type="text" value="<?php echo $res['Nom_adversaire'] ?>" name="adversaire" required><br />
             Lieu : <input type="text" value="<?php echo $res['Lieu_de_rencontre'] ?>" name="lieu" required><br />
-            But Pour : <input type="number" value="<?php echo $res['Points_equipe'] ?>" name="points_equipe" ><br />
-            But Contre : <input type="number" value="<?php echo $res['Points_adversaire'] ?>" name="points_adversaire" ><br />
             <input type="hidden" value="<?php echo $res['Id_rencontre'] ?>" name='Id_rencontre'>
             <input type='Submit' value='Valider'>
         </form>

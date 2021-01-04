@@ -18,12 +18,20 @@
             $req3 = $linkpdo->prepare("UPDATE football.rencontre SET Points_equipe = :points_equipe, Points_adversaire = :points_adversaire WHERE Id_rencontre = :Id_rencontre");
             $req3->execute(array('points_adversaire' => $Points_adversaire,'points_equipe' => $Points_equipe,'Id_rencontre' => $id_rencontre));
         }
+        
+        if (!empty($_POST['AD'])) {
+            $Attaquant_droit = htmlentities($_POST['AD']);
+            $req5 = $linkpdo->prepare("INSERT INTO football.participant(Attaquant_Droit) VALUE(:Attaquant_Droit)");
+            $req5->execute(array('Attaquant_Droit' => $Attaquant_droit));
+        }
 
         $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
         $req->execute(array($id_rencontre));
         $res=$req->fetch();
         $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence FROM football.players");
-           
+        $req4 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ?");
+        $req4->execute(array($id_rencontre));
+        $res4 = $req4->fetch();
     }
 ?>
 
@@ -48,7 +56,7 @@
                 <option></option>
                 <?php
                     $req2->execute();
-                    $res2=$req2->fetch(); 
+                    $res2=$req2->fetch();
                     if ($res2 != false) {
                         do { ?>
                             <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>

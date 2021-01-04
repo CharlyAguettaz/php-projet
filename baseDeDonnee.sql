@@ -7,7 +7,7 @@ CREATE TABLE users(
 
 INSERT INTO users(username, password) VALUES("root", "root");
 
-DELETE * FROM users;
+DELETE FROM users;
 
 -- Joueurs
 CREATE TABLE players(

@@ -12,11 +12,18 @@
             die('Error :' . $e->getMessage());
         }
 
+        if (!empty($_POST['Points_equipe']) && !empty($_POST['Points_adversaire'])) {
+            $Points_equipe=htmlentities($_POST['Points_equipe']);
+            $Points_adversaire=htmlentities($_POST['Points_adversaire']);
+            $req3 = $linkpdo->prepare("UPDATE football.rencontre SET Points_equipe = :points_equipe, Points_adversaire = :points_adversaire WHERE Id_rencontre = :Id_rencontre");
+            $req3->execute(array('points_adversaire' => $Points_adversaire,'points_equipe' => $Points_equipe,'Id_rencontre' => $id_rencontre));
+        }
+
         $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
         $req->execute(array($id_rencontre));
         $res=$req->fetch();
         $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence FROM football.players");
-        
+           
     }
 ?>
 
@@ -33,7 +40,8 @@
             </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             <p>
-                Score du match : Agen <?php echo $res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'] ?>
+                Score du match : Agen <input type="number" value="<?php echo $res['Points_equipe'] ?>" name='Points_equipe' size="3"> - 
+                <input type ="number" value=<?php echo $res['Points_adversaire']?> name ='Points_adversaire' size="3"> <?php echo $res['Nom_adversaire'] ?>
             </p>
             Attaquant droit :
             <select name='AD' required>

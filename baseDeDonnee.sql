@@ -24,8 +24,8 @@ CREATE TABLE players(
 );
 
 INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES
-("A2345678", "Beyssen", "Antoine", "antoine-beyssen.png", "2002-04-06", 184, 74, "DH", "Actif"),
-("B3456789", "Princeau", "Matthieu", "matthieu-princeau.png", "1998-02-15", 172, 70, "CT", "Actif");
+("0234567891", "Beyssen", "Antoine", "antoine-beyssen.png", "2002-04-06", 184, 74, "AD", "Actif"),
+("2345678910", "Princeau", "Matthieu", "matthieu-princeau.png", "1998-02-15", 172, 70, "GB", "Actif");
 
 DELETE FROM `players`;
 
@@ -47,3 +47,18 @@ INSERT INTO rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_r
 ("2020-12-31", "18:00:00", "Les verts", "Stade de France", -1, -1),
 ("2020-12-17", "18:00:00", "Les oranges", "Stade de France", -1, -1)
 ;
+
+CREATE TABLE participant(
+    Id_rencontre INT NOT NULL AUTO_INCREMENT,
+    numLicence VARCHAR(50),
+    Attaquant_droit VARCHAR(50),
+    Attaquant_gauche VARCHAR(50),
+    Attaquant_centre VARCHAR(50),
+    Defenseur_droit VARCHAR(50),
+    Defenseur_gauche VARCHAR(50),
+    Defenseur_centre VARCHAR(50),
+    Gardien_de_but VARCHAR(50),
+    PRIMARY KEY(Id_rencontre, numLicence),
+    FOREIGN KEY(Id_rencontre) REFERENCES rencontre(Id_rencontre),
+    FOREIGN KEY(numLicence) REFERENCES players(numLicence)
+);

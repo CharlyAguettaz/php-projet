@@ -28,7 +28,7 @@
         $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
         $req->execute(array($id_rencontre));
         $res=$req->fetch();
-        $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence FROM football.players");
+        $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence,statut FROM football.players");
         $req4 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ?");
         $req4->execute(array($id_rencontre));
         $res4 = $req4->fetch();
@@ -58,9 +58,11 @@
                     $req2->execute();
                     $res2=$req2->fetch();
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />
@@ -71,9 +73,12 @@
                     $req2->execute();
                     $res2=$req2->fetch(); 
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />
@@ -84,9 +89,11 @@
                     $req2->execute();
                     $res2=$req2->fetch(); 
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />
@@ -97,9 +104,11 @@
                     $req2->execute();
                     $res2=$req2->fetch(); 
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />
@@ -110,9 +119,11 @@
                     $req2->execute();
                     $res2=$req2->fetch(); 
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />
@@ -123,9 +134,11 @@
                     $req2->execute();
                     $res2=$req2->fetch(); 
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />
@@ -134,11 +147,13 @@
                 <option></option>
                 <?php
                     $req2->execute();
-                    $res2=$req2->fetch(); 
+                    $res2=$req2->fetch();
                     if ($res2 != false) {
-                        do { ?>
-                            <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                        <?php } while($res2=$req2->fetch());
+                        do { 
+                            if ($res2['statut'] == "Actif") { ?>
+                                <option value='<?php $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                            <?php }
+                        } while($res2=$req2->fetch());
                     }
                 ?>
             </select><br />

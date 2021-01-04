@@ -11,7 +11,7 @@ DELETE * FROM users;
 
 -- Joueurs
 CREATE TABLE players(
-   numLicence VARCHAR(50),
+   numLicence TINYINT,
    nom VARCHAR(50),
    prenom VARCHAR(50),
    photo VARCHAR(255),
@@ -50,7 +50,7 @@ INSERT INTO rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_r
 
 CREATE TABLE participant(
     Id_rencontre INT NOT NULL AUTO_INCREMENT,
-    numLicence VARCHAR(50),
+    numLicence TINYINT,
     Attaquant_droit VARCHAR(50),
     Attaquant_gauche VARCHAR(50),
     Attaquant_centre VARCHAR(50),
@@ -58,6 +58,7 @@ CREATE TABLE participant(
     Defenseur_gauche VARCHAR(50),
     Defenseur_centre VARCHAR(50),
     Gardien_de_but VARCHAR(50),
+    Commentaire TEXT,
     PRIMARY KEY(Id_rencontre, numLicence),
     FOREIGN KEY(Id_rencontre) REFERENCES rencontre(Id_rencontre),
     FOREIGN KEY(numLicence) REFERENCES players(numLicence)

@@ -56,28 +56,46 @@
           <?php
                if ($res == false) {
                     echo "Aucune rencontre enregister pour le moment !"."<br />";
-               } else {
-                    do {
-                         $id = $res['Id_rencontre'];
-                         echo "Adversaire : ".$res['Nom_adversaire']."<br />";
-                         echo $res['Date_rencontre']." ";
-                         echo $res['Heure_rencontre']."<br />";
-                         echo "Lieu : ".$res['Lieu_de_rencontre']."<br />";
-                         echo "Score : Agen ".$res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire']; ?>
-                         <form action="modifierRencontre.php" method="post">
-                              <input type='hidden' value="<?php echo $id ?>" name='id'>
-                              <input type='submit' value='Modifier'>
-                         </form>
-                         <form action="suppressionRencontre.php" method="post">
-                              <input type='hidden' value="<?php echo $id ?>" name='id'>
-                              <input type='submit' value='Supprimer'><br />
-                         </form>
-                         <form action="detailsRencontre.php" method="post">
-                              <input type='hidden' value="<?php echo $id ?>" name ='id'>
-                              <input type='submit' value="Détails du match">
-                         </form>
-                         <?php echo "<br />";
-                    } while ($res = $req->fetch());
+               } else { ?>
+                    <table class='table'>
+                         <thead>
+                              <tr>
+                                   <th scope="col">Nom de l'adversaire</th>
+                                   <th scope="col">Date de la rencontre</th>
+                                   <th scope="col">Heure de la rencontre</th>
+                                   <th scope="col">Lieu de la rencontre</th>
+                                   <th scope="col">Score de l'équipe</th>
+                                   <th scope="col">Score de l'adversaire</th>
+                                   <th></th>
+                                   <th></th>
+                                   <th></th>
+                              </tr>
+                         </thead>
+                    <? do {
+                         $id = $res['Id_rencontre']; ?>
+                         <tbody>
+                              <tr>
+                                   <td><?php echo $res['Nom_adversaire'] ?></td>
+                                   <td><?php echo $res['Date_rencontre'] ?></td>
+                                   <td><?php echo $res['Heure_rencontre'] ?></td>
+                                   <td><?php echo $res['Lieu_de_rencontre'] ?></td>
+                                   <td><?php echo $res['Points_equipe'] ?></td>
+                                   <td><?php echo $res['Points_adversaire'] ?></td>
+                                   <td><form action="modifierRencontre.php" method="post">
+                                        <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                        <input type='submit' value='Modifier'>
+                                   </form><td>
+                                   <td><form action="suppressionRencontre.php" method="post">
+                                        <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                        <input type='submit' value='Supprimer'><br />
+                                   </form><td>
+                                   <td><form action="detailsRencontre.php" method="post">
+                                        <input type='hidden' value="<?php echo $id ?>" name ='id'>
+                                        <input type='submit' value="Détails du match">
+                                   </form><td>
+                              </tr>
+                         </tbody>
+                    <?php } while ($res = $req->fetch());
                }
           ?>
      </body>

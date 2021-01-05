@@ -79,8 +79,8 @@
                                         <th scope="col">Poste préférer</th>
                                         <th scope="col">Statut</th>
                                         <th scope="col">Photo</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
+                                        <th></th>
+                                        <th></th>
                                    </tr>
                               </thead>
                               <?php do {
@@ -116,30 +116,50 @@
                     if ($res == false) {
                          echo "Aucun joueur enregister !";
                     } else {
-                         do {
-                              $id = $res['numLicence'];
-                              echo "Numéro de Licence : ".$res['numLicence']."<br />";
-                              echo $res['nom']." ";
-                              echo $res['prenom']."<br />";
-                              echo "Date de naissance : ".$res['dateDeNaissance']."<br />";
-                              echo "Poids : ".$res['poids']."<br />";
-                              echo "Taille : ".$res['taille']."<br />";
-                              echo "Photo : "."<br />";
-                              echo "Poste préférer : ".$res['postePrefere']."<br />";
-                              echo "Statut : ".$res['statut']."<br />";
-                              ?>
-                              <form action="modifier.php" method="post">
-                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                   <input type='submit' value='Modifier'>
-                              </form>
-                              <form action="Suppression.php" method="post">
-                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                   <input type='submit' value='Supprimer'><br />
-                              </form>
-                              <?php
-                              echo "<br />";
-                         } while ($res = $req2->fetch()); 
-                    }
+                         ?>
+                         <table class='table'>
+                              <thead>
+                                   <tr>
+                                        <th scope="col">Numéro de Licence</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prenom</th>
+                                        <th scope="col">Date de naissance</th>
+                                        <th scope="col">Poids</th>
+                                        <th scope="col">Taille</th>
+                                        <th scope="col">Poste préférer</th>
+                                        <th scope="col">Statut</th>
+                                        <th scope="col">Photo</th>
+                                        <th></th>
+                                        <th></th>
+                                   </tr>
+                              </thead>
+                              <?php do {
+                                   $id = $res['numLicence']; ?>
+                                   <tbody>
+                                        <tr>
+                                             <td><?php echo $res['numLicence'] ?></td>
+                                             <td><?php echo $res['nom'] ?></td>
+                                             <td><?php echo $res['prenom'] ?></td>
+                                             <td><?php echo $res['dateDeNaissance'] ?></td>
+                                             <td><?php echo $res['poids'] ?></td>
+                                             <td><?php echo $res['taille'] ?></td>
+                                             <td><?php echo $res['postePrefere'] ?></td>
+                                             <td><?php echo $res['statut'] ?></td>
+                                             <td><?php echo $res['photo'] ?></td>
+                                             <td><form action="modifier.php" method="post">
+                                                  <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                                  <input type='submit' value='Modifier'>
+                                             </form></td>
+                                             <td><form action="Suppression.php" method="post">
+                                                  <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                                  <input type='submit' value='Supprimer'><br />
+                                             </form><td>
+                                        </tr>
+                                   </tbody>
+                                   <?php
+                              } while ($res = $req2->fetch());
+                         ?> </table> 
+                    <?php }
                }
           ?>
           

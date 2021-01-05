@@ -16,7 +16,13 @@
         $req->execute(array('username' => $username, 'password' => $password));
         $res=$req->fetch();
         if ($res == false) {
-            echo "Identifiant ou mot de passe inconnue";
+            do {
+                if ($res == false) {
+                    echo "Identifiant ou mot de passe inconnue";
+                } else {
+                    header('location:ajoutJoueur.php');
+                }
+            } while($res=$req->fetch());
         } else {
             header('location:ajoutJoueur.php');
         }

@@ -1,67 +1,85 @@
-<html>
-     <head>   
-     <meta charset="utf-8" /> 
-     <link rel="stylesheet" href="style.css" />
-         
-          <p>  <input type=button onclick=window.location.href='http://localhost/php-projet/ajoutRencontre.php'; value= "Ajouter une rencontre" />
-          </p>
-     </head>
-     <body>
-          <header>
-          <nav class="menu">
-               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
-               <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
-               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
-               <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-         </nav>  
-          <h1>Rechercher une rencontre<br /></h1>
-          </header>
+<?php
+     $db = 'football';
+     $login = 'root';
+     $mdp = '';
+     try {
+          $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login,$mdp);
+     }
+     catch (Exeption $e) {
+          die('Error :' . $e->getMessage());
+     }
+     $req = $linkpdo->prepare("SELECT * FROM football.rencontre ORDER BY Date_rencontre DESC" );
+     $req->execute();
+     $res=$req->fetch();
+?>
 
+<html>
+     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Projet PHP</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Joueur
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="ajoutJoueur.php">Ajouter un joueur</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="recherche.php">Rechercher un joueur</a></li>
+                        </ul>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Match
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+     <body>
+          <h1>Rechercher une rencontre<br /></h1>
+          <?php
+               if ($res == false) {
+                    echo "Aucune rencontre enregister pour le moment !"."<br />";
+               } else {
+                    do {
+                         $id = $res['Id_rencontre'];
+                         echo "Adversaire : ".$res['Nom_adversaire']."<br />";
+                         echo $res['Date_rencontre']." ";
+                         echo $res['Heure_rencontre']."<br />";
+                         echo "Lieu : ".$res['Lieu_de_rencontre']."<br />";
+                         echo "Score : Agen ".$res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire']; ?>
+                         <form action="modifierRencontre.php" method="post">
+                              <input type='hidden' value="<?php echo $id ?>" name='id'>
+                              <input type='submit' value='Modifier'>
+                         </form>
+                         <form action="suppressionRencontre.php" method="post">
+                              <input type='hidden' value="<?php echo $id ?>" name='id'>
+                              <input type='submit' value='Supprimer'><br />
+                         </form>
+                         <form action="detailsRencontre.php" method="post">
+                              <input type='hidden' value="<?php echo $id ?>" name ='id'>
+                              <input type='submit' value="Détails du match">
+                         </form>
+                         <?php echo "<br />";
+                    } while ($res = $req->fetch());
+               }
+          ?>
      </body>
 </html>
-
-          <?php
-               ;
-                    $db = 'football';
-                    $login = 'root';
-                    $mdp = '';
-                    try {
-                         $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login,$mdp);
-                    }
-                    catch (Exeption $e) {
-                         die('Error :' . $e->getMessage());
-                    }
-
-                    $req = $linkpdo->prepare("SELECT * FROM football.rencontre ORDER BY Date_rencontre DESC" );
-                    $req->execute();
-                    $res=$req->fetch();
-                    if ($res == false) {
-                         echo "Aucune rencontre enregister pour le moment !"."<br />";
-                    } else {
-     
-                         do {
-                              $id = $res['Id_rencontre'];
-                              echo "Adversaire : ".$res['Nom_adversaire']."<br />";
-                              echo $res['Date_rencontre']." ";
-                              echo $res['Heure_rencontre']."<br />";
-                              echo "Lieu : ".$res['Lieu_de_rencontre']."<br />";
-                              echo "Score : Agen ".$res['Points_equipe']." - ".$res['Points_adversaire']." ".$res['Nom_adversaire'];
-                              ?>
-                              <form action="modifierRencontre.php" method="post">
-                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                   <input type='submit' value='Modifier'>
-                              </form>
-                              <form action="suppressionRencontre.php" method="post">
-                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                   <input type='submit' value='Supprimer'><br />
-                              </form>
-                              <form action="detailsRencontre.php" method="post">
-                                   <input type='hidden' value="<?php echo $id ?>" name ='id'>
-                                   <input type='submit' value="Détails du match">
-                              </form>
-                              <?php
-                              echo "<br />";
-                         } while ($res = $req->fetch());
-                    }
-               
-          ?>
+          

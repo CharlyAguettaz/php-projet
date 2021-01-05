@@ -66,9 +66,9 @@
                             Match
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter une rencontre</a></li>
+                            <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="rencontre.php">Rechercher une rencontre</a></li>
+                            <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
                         </ul>
                     </ul>
                 </div>

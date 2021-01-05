@@ -38,9 +38,10 @@
 ?>
 
 <html>
-
-    <link rel="stylesheet" href="style.css" />
     <head>  
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
         <p>
             <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
@@ -48,9 +49,6 @@
             <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
         </p>
         <h1> Ajouter un Joueur </h1>
-    </head>
-    <body>
-       
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             Nom : <input type="text" name="nom" required><br />
             Prenom : <input type="text" name="prenom" required><br />

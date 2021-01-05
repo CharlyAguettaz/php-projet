@@ -76,34 +76,62 @@
         </nav>
     </header>
     <body>
-        <h1> Ajouter un Joueur </h1>
-        <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            Nom : <input type="text" name="nom" required><br />
-            Prenom : <input type="text" name="prenom" required><br />
-            Date de naissance : <input type="date" name="dateDeNaissance" required><br />
-            Poids : <input type="number" name="poids" required ><br />
-            Taille : <input type="number" name="taille" required><br />
-            Numéro de licence : <input type="text" name="numLicence" required size="11" minlength ="10" maxlength="10"><br />
-            Poste Préféré : <select name='postePrefere' required>
-                                <option></option>
-                                <option value='AD'>Attaquant droit</option>
-                                <option value='AG'>Attaquant gauche</option>
-                                <option value='AC'>Attanquant centre</option>
-                                <option value='DD'>Défenseur droit</option>
-                                <option value='DG'>Défenseur gauche</option>
-                                <option value='DC'>Défenseur centre</option>
-                                <option value='GB'>Gardien de but</option>
-                            </select><br />
-            Photo : <input type="file" name="photo" accept="image/png,image/jpg" required><br />
-            Statut : <select name='statut' required>
-                        <option></option>
-                        <option value='Actif'>Actif</option>
-                        <option value='Blesse'>Bléssé</option>
-                        <option value='Suspendu'>Suspendu</option>
-                        <option value='Absent'>Absent</option>
-                    </select><br />
-            <input type='Submit' value='Valider'>
+        <h1> Ajouter un Joueur </h1><br/>
+        <form action="<?php $_SERVER['PHP_SELF']?>" method="post" class="row g-3">
+            <div class="col-md-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" name="nom" id="nom" required>
+            </div>
+            <div class="col-md-3">
+                <label for="prenom" class="form-label">Prenom</label>
+                <input type="text" name="prenom" id="prenom" required>
+            </div>
+            <div class="col-md-3">
+                <label for="dateDeNaissance" class="form-label">Date de naissance</label>
+                <input type="date" name="dateDeNaissance" id="dateDeNaissance" required>
+            </div>
+            <div class="col-md-2">
+                <label for="poids" class="form-label">Poids</label>
+                <input type="number" name="poids" id="poids" required >
+            </div>
+            <div class="col-md-3">
+                <label for="taille" class="form-label">Taille</label>
+                <input type="number" name="taille" id="taille" required>
+            </div>
+            <div class="col-md-3">
+                <label for="numLicence" class="form-label">Numéro de licence</label>
+                <input type="text" name="numLicence" required size="11" minlength ="10" maxlength="10" id="numLicence">
+            </div>
+            <div class="col-md-3">
+                <label for="postePrefere" class="form-label">Poste Préféré</label>
+                <select name='postePrefere' id="postePrefere" required>
+                    <option></option>
+                    <option value='AD'>Attaquant droit</option>
+                    <option value='AG'>Attaquant gauche</option>
+                    <option value='AC'>Attanquant centre</option>
+                    <option value='DD'>Défenseur droit</option>
+                    <option value='DG'>Défenseur gauche</option>
+                    <option value='DC'>Défenseur centre</option>
+                    <option value='GB'>Gardien de but</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="photo" class="form-label">Photo</label>
+                <input type="file" name="photo" accept="image/png,image/jpg" id="photo" required>
+            </div>
+            <div class="col-md-3">
+                <label for="statut" class="form-label">Statut</label>
+                <select name='statut' required id="statut">
+                    <option></option>
+                    <option value='Actif'>Actif</option>
+                    <option value='Blesse'>Bléssé</option>
+                    <option value='Suspendu'>Suspendu</option>
+                    <option value='Absent'>Absent</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type='Submit' value='Valider'>
+            </div>
         </form>
-        
     </body>
 </html>

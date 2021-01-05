@@ -20,9 +20,9 @@
         }
         
         if (!empty($_POST['AD'])) {
-            $Attaquant_droit = htmlentities($_POST['AD']);
-            $req5 = $linkpdo->prepare("INSERT INTO football.participant(Attaquant_Droit) VALUE(:Attaquant_Droit)");
-            $req5->execute(array('Attaquant_Droit' => $Attaquant_droit));
+            $numLicence = htmlentities($_POST['AD']);
+            $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire) VALUE(?,?,'Attaquant Droit','')");
+            $req5->execute(array($id_rencontre,$numLicence));
         }
 
         $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");

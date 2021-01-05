@@ -1,10 +1,36 @@
 body{
     background-color: rgb(65, 65, 65);
-    color: #ffff;
-    }
-a{
-    font-size: 2rem;
+    font-family: Verdana, sans-serif;
+    font-size: 16px;
+    height: 100%;
+    padding: 0;
+}
+/* HEADER */
+
+.menu{
     text-align: center;
-    color:cornsilk;
-    font-style: none;
+    background-color: #d4d4d4;
+    width: 100%;
+    box-shadow: v-pos 0px 200px;
+}
+.menu a{
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 10px;
+    color: #FFF;
+    transition: all 0.1s ease 0.2s;
+
+}
+.menu a:hover{
+    color: #62bcda;
+    transition: all 0.1s ease 0.2s;
+}
+
+h1{
+    margin: 1% 5% 0% 5%;
+}
+
+form{
+    margin: 1% 5% 0% 5%;
 }

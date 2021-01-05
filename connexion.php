@@ -36,6 +36,8 @@
         </p>
     </head>
     <body>
+    <header>
+          </header>
         <form action="<?php $_SERVER['PHP_SELF']?>" method='post'>
             Identifiant : <input type='text' required name='username'><br />
             Mot de passe : <input type='password' required name='password'><br />

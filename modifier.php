@@ -16,16 +16,17 @@
 ?>
 
 <html>
+<link rel="stylesheet" href="style.css" />
     <head>    
-        <h1>Modifier un joueur<br /></h1>
-    </head>
-    <body>  
-        <p>
+    <p>
             <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
             <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
             <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-        </p>            
+    </p>  
+        <h1>Modifier un joueur<br /></h1>
+    </head>
+    <body>          
             <form action="modification.php" method="post">
                 Numéro de Licence : <input readonly type="text" value="<?php echo $res['numLicence'] ?>" name='numLicence'><br />
                 Nom : <input type="text" value="<?php echo $res['nom'] ?>" name='nom'><br /> 

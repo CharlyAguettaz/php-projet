@@ -16,16 +16,18 @@
 ?>
 
 <html>
-    <head>    
-        <h1>Modifier une rencontre<br /></h1>
-    </head>
-    <body>  
-        <p>
+<link rel="stylesheet" href="style.css" />
+    <head> 
+    <p>
             <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
             <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
             <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
             <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-        </p>            
+    </p>     
+        <h1>Modifier une rencontre<br /></h1>
+    </head>
+    <body>  
+                 
         <form action="modificationRencontre.php" method="post">
             Date : <input type="date" value="<?php echo $res['Date_rencontre'] ?>" name="date" required><br />
             Heure : <input type="text" value="<?php echo $res['Heure_rencontre'] ?>" name="heure" required><br />

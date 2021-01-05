@@ -36,16 +36,18 @@
 ?>
 
 <html>
+<link rel="stylesheet" href="style.css" />
     <head>
-        <h1>Details de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
-    </head>
-    <body>
-            <p>
+    <p>
                <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
                <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
                <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-            </p>
+    </p>
+        <h1>Details de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
+    </head>
+    <body>
+         
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             <p>
                 Score du match : Agen <input type="number" value="<?php echo $res['Points_equipe'] ?>" name='Points_equipe' size="3"> - 

@@ -24,6 +24,7 @@
 ?>
 <html>
     <head>
+    <link rel="stylesheet" href="style.css" />
         <p>
             <h1>Page de connexion</h1>
         </p>

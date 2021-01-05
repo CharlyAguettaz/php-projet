@@ -1,16 +1,22 @@
 <html>
-     <head>    
-          <h1>Rechercher une rencontre<br /></h1>
-     </head>
-     <body>
+     <head>   
+     <meta charset="utf-8" /> 
+     <link rel="stylesheet" href="style.css" />
           <p>
                <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
                <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
                <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
           </p>
+          <h1>Rechercher une rencontre<br /></h1>
+     </head>
+     <body>
+
+     </body>
+</html>
 
           <?php
+               ;
                     $db = 'football';
                     $login = 'root';
                     $mdp = '';

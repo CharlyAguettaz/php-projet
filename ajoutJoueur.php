@@ -1,3 +1,42 @@
+<?php
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut']) && !empty($_POST['photo'])) {
+        $nom = htmlentities($_POST['nom']);
+        $prenom = htmlentities($_POST['prenom']); 
+        $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
+        $poids = htmlentities($_POST['poids']);
+        $taille = htmlentities($_POST['taille']);
+        $numLicence = htmlentities($_POST['numLicence']);
+        $postePrefere = htmlentities($_POST['postePrefere']);
+        $statut = htmlentities($_POST['statut']);
+        $photo = htmlentities($_POST['photo']);
+                
+        $db = 'football';
+        $login="root";
+        $mdp="";
+        try {
+            $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
+        }
+        catch (Exeption $e) {
+            die('Error :' . $e->getMessage());
+        }
+
+        $req = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence LIKE ?");
+        $req->execute(array($numLicence));
+        $res=$req->fetch();
+        if($res == false) {
+            $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
+            $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
+            if ($req2 != FALSE) {
+                print("Ajout effectuer avec succés");
+            } else {
+                print("Erreur execute");
+            }
+        } else {
+            echo "Numéro de licence déjà existante !";
+        }
+    }
+?>
+
 <html>
 
     <link rel="stylesheet" href="style.css" />
@@ -39,43 +78,6 @@
                     </select><br />
             <input type='Submit' value='Valider'>
         </form>
-        <?php
-            if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut']) && !empty($_POST['photo'])) {
-                $nom = htmlentities($_POST['nom']);
-                $prenom = htmlentities($_POST['prenom']); 
-                $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
-                $poids = htmlentities($_POST['poids']);
-                $taille = htmlentities($_POST['taille']);
-                $numLicence = htmlentities($_POST['numLicence']);
-                $postePrefere = htmlentities($_POST['postePrefere']);
-                $statut = htmlentities($_POST['statut']);
-                $photo = htmlentities($_POST['photo']);
-                
-                $db = 'football';
-                $login="root";
-                $mdp="";
-                try {
-                    $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
-                }
-                catch (Exeption $e) {
-                    die('Error :' . $e->getMessage());
-                }
-
-                $req = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence LIKE ?");
-                $req->execute(array($numLicence));
-                $res=$req->fetch();
-                if($res == false) {
-                    $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
-                    $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
-                    if ($req2 != FALSE) {
-                        print("Ajout effectuer avec succés");
-                    } else {
-                        print("Erreur execute");
-                    }
-                } else {
-                    echo "Numéro de licence déjà existante !";
-                }
-            }
-        ?>
+        
     </body>
 </html>

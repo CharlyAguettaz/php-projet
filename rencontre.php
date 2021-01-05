@@ -2,15 +2,20 @@
      <head>   
      <meta charset="utf-8" /> 
      <link rel="stylesheet" href="style.css" />
-          <p>
+         
+          <p>  <input type=button onclick=window.location.href='http://localhost/php-projet/ajoutRencontre.php'; value= "Ajouter une rencontre" />
+          </p>
+     </head>
+     <body>
+          <header>
+          <nav class="menu">
                <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
                <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
                <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-          </p>
+         </nav>  
           <h1>Rechercher une rencontre<br /></h1>
-     </head>
-     <body>
+          </header>
 
      </body>
 </html>
@@ -32,7 +37,6 @@
                     $res=$req->fetch();
                     if ($res == false) {
                          echo "Aucune rencontre enregister pour le moment !"."<br />";
-                         echo "<a <a href='http://localhost/php-projet/ajoutRencontre.php'>Ajouter une rencontre ici</a>";
                     } else {
      
                          do {

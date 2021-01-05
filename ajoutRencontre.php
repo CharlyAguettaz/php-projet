@@ -34,17 +34,21 @@
         ?>
 
 <html>
-<link rel="stylesheet" href="style.css" />
+
 <head> 
-    <p>
-        <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
-        <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
-        <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
-        <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-    </p>
-    <h1>Ajouter une rencontre</h1> 
+    <link rel="stylesheet" href="style.css" />
+ 
 </head>
     <body>
+    <header>
+    <nav class="menu">
+               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
+               <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
+               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
+               <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
+         </nav>  
+    <h1>Ajouter une rencontre</h1> 
+          </header>
         
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             Date : <input type="date" name="date" required><br />

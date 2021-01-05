@@ -38,15 +38,18 @@
 <html>
 <link rel="stylesheet" href="style.css" />
     <head>
-    <p>
+    
+    </head>
+    <body>
+    <header>
+    <nav class="menu">
                <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
                <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
                <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-    </p>
+         </nav>  
         <h1>Details de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
-    </head>
-    <body>
+          </header>
          
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             <p>

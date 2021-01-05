@@ -34,16 +34,19 @@
 
 <html>
 <head>
-    <p>
-                <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
-                <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
-                <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
-                <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
-    </p>  
-    <h1> Modification de rencontre </h1>
+  
 </head>
 <link rel="stylesheet" href="style.css" />
     <body>
+    <header>
+    <nav class="menu">
+               <a href="http://localhost/php-projet/ajoutJoueur.php">Ajouter un joueur</a> /
+               <a href="http://localhost/php-projet/recherche.php">Rechercher un joueur</a> /
+               <a href="http://localhost/php-projet/ajoutRencontre.php">Ajouter une rencontre</a> /
+               <a href="http://localhost/php-projet/rencontre.php">Rechercher une rencontre</a>
+         </nav>  
+    <h1> Modification de rencontre </h1>
+          </header>
         <p>
             <a href="recherche.php">Revenir sur la page de recherche<a>
         <p>

@@ -72,15 +72,31 @@
         </nav>
     </header>
     <body>
-    <h1>Ajouter une rencontre</h1> 
+    <h1>Ajouter un match</h1> 
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            Date : <input type="date" name="date" required><br />
-            Heure : <input type="time" name="heure" required><br />
-            Adversaire : <input type="text" name="adversaire" required ><br />
-            Lieu : <input type="text" name="lieu" required><br />
-
-            <input type='Submit' value='Valider'>
+            <div class="row gy-3 gx-5 align-items-center">
+                <div class="col-auto">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" name="date" class="form-control" id="date" required>
+                </div>
+                <div class="col-auto">
+                    <label for="heure" class="form-label">Heure</label>
+                    <input type="time" name="heure" class="form-control" id="heure" required>
+                </div>
+            </div>
+            <div class="row gy-3 gx-5 align-items-center">
+                <div class="col-auto">
+                    <label for="adversaire" class="form-label">Adversaire</label>
+                    <input type="text" name="adversaire" class="form-control" id="adversaire" required>
+                </div>
+                <div class="col-auto">
+                    <label for="lieu" class="form-label">Lieu</label>
+                    <input type="text" name="lieu" class="form-control" id="lieu" required>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
+            </div>
         </form>
-        
     </body>
 </html>

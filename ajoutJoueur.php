@@ -8,7 +8,6 @@
         $numLicence = htmlentities($_POST['numLicence']);
         $postePrefere = htmlentities($_POST['postePrefere']);
         $statut = htmlentities($_POST['statut']);
-        $photo = htmlentities($_POST['photo']);
                 
         $db = 'football';
         $login="root";
@@ -24,13 +23,24 @@
         $req->execute(array($numLicence));
         $res=$req->fetch();
         if($res == false) {
-            $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
-            $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
-            if ($req2 != FALSE) {
-                print("Ajout effectuer avec succés");
+            if (!empty($_FILES['photo'])) {
+                $filename=$_FILES['photo'];
+                $fileExt = "." . strtolower(substr(strchr($filename, "."), 1));
+                $uniqueName = md5(uniqid(rand(), true));
+                $newFileName = $uniqueName . $fileExt;
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "./photos-m3104/" . $newFileName);
+                print("Photo upload");
+                $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
+                $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
+                if ($req2 != FALSE) {
+                  print("Ajout effectuer avec succés");
+                } else {
+                    print("Erreur execute");
+                } 
             } else {
-                print("Erreur execute");
+                print("Erreur sur l'upload de la photo");
             }
+
         } else {
             echo "Numéro de licence déjà existante !";
         }

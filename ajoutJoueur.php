@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
+                    <button type="submit" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
                 </div>
             </form>
     </body>

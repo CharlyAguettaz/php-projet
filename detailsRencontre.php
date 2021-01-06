@@ -33,6 +33,18 @@
         $req5->execute(array($id_rencontre,$numLicence));
     }
 
+    if (isset($_POST['AG']) && !empty($_POST['AG'])) {
+        $numLicence = htmlentities($_POST['AG']);
+        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire) VALUE(?,?,'Attaquant Gauche','')");
+        $req5->execute(array($id_rencontre,$numLicence));
+    }
+
+    if (isset($_POST['AC']) && !empty($_POST['AC'])) {
+        $numLicence = htmlentities($_POST['AC']);
+        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire) VALUE(?,?,'Attaquant Droit','')");
+        $req5->execute(array($id_rencontre,$numLicence));
+    }
+
 ?>
 
 <html>

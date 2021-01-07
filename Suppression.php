@@ -13,7 +13,16 @@
         catch (Exception $e) { 
             die('Erreur : '. $e->getMessage());    
         } 
+        $req2 = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence = ?");
+        $req2->execute();
+        $res2 = $req2->fetch();
         
+        if ($req2 != false){
+            $filename= $res2['photo'];
+            unlink("photos-m3104/".$filename);
+        } else {
+            header("location:".  $_SERVER['HTTP_REFERER']); 
+        }
         $req = $linkpdo->prepare("DELETE FROM football.players WHERE numLicence = ?");
         $req->execute(array($id));
         $res = $req->fetch();

@@ -55,7 +55,7 @@
     </header>
     <body>  
         <h1>Modifier un joueur<br /></h1>     
-        <form action="modification.php" method="post">
+        <form action="modification.php" method="post" enctype="multipart/form-data">
             Numéro de Licence : <input readonly type="text" value="<?php echo $res['numLicence'] ?>" name='numLicence'><br />
             Nom : <input type="text" value="<?php echo $res['nom'] ?>" name='nom'><br /> 
             Prenom : <input type="text" value="<?php echo $res['prenom'] ?>" name='prenom'><br /> 

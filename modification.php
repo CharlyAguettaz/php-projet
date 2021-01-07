@@ -1,5 +1,5 @@
 <?php 
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['photo'])) {
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere'])) {
         $numLicence = htmlentities($_POST['numLicence']);
         $nom = htmlentities($_POST['nom']);
         $prenom = htmlentities($_POST['prenom']); 
@@ -8,7 +8,6 @@
         $taille = htmlentities($_POST['taille']);
         $postePrefere = htmlentities($_POST['postePrefere']);
         $statut = htmlentities($_POST['statut']);
-        $photo = htmlentities($_POST['photo']);
 
         $db = 'football';
         $login = 'root';
@@ -19,12 +18,21 @@
         catch (Exeption $e) {
              die('Error :' . $e->getMessage());
         }
-        $req = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere, statut = :statut WHERE numLicence = :numLicence");
-        $req->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $photo, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
-        if ($req != FALSE) {
-            print("Modification effectué avec succés !");
+        if (!empty($_FILES['photo'])) {
+            $filename=$_FILES['photo']['name'];
+            $fileExt = "." . strtolower(substr(strchr($filename, "."), 1));
+            $uniqueName = md5(uniqid(rand(), true));
+            $newFileName = $uniqueName . $fileExt;
+            move_uploaded_file($_FILES["photo"]["tmp_name"], "photos-m3104/" . $newFileName);
+            $req = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere, statut = :statut WHERE numLicence = :numLicence");
+            $req->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
+            if ($req != FALSE) {
+                print("Modification effectué avec succés !");
+            } else {
+                print("Erreur execute");
+            }
         } else {
-            print("Erreur execute");
+            echo "Aucune photo"
         }
     } else {
         echo "Erreur de modification : Erreur sur la séléction des informations par l'utilisateur";

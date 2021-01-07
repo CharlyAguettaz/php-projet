@@ -24,7 +24,7 @@
         $res=$req->fetch();
         if($res == false) {
             if (!empty($_FILES['photo'])) {
-                $filename=$_FILES['photo'];
+                $filename=$_FILES['photo']['name'];
                 $fileExt = "." . strtolower(substr(strchr($filename, "."), 1));
                 $uniqueName = md5(uniqid(rand(), true));
                 $newFileName = $uniqueName . $fileExt;

@@ -56,14 +56,42 @@
     <body>  
         <h1>Modifier un joueur<br /></h1>     
         <form action="modification.php" method="post" enctype="multipart/form-data">
-            Numéro de Licence : <input readonly type="text" value="<?php echo $res['numLicence'] ?>" name='numLicence'><br />
-            Nom : <input type="text" value="<?php echo $res['nom'] ?>" name='nom'><br /> 
-            Prenom : <input type="text" value="<?php echo $res['prenom'] ?>" name='prenom'><br /> 
-            Date de naissance : <input type="date" value="<?php echo $res['dateDeNaissance'] ?>" name='dateDeNaissance'><br /> 
-            Poids : <input type="number" value="<?php echo $res['poids'] ?>" name='poids'><br />
-            Taille : <input type="number" value="<?php echo $res['taille'] ?>" name='taille'><br />
-            Poste Préféré : <select name='postePrefere' >
-                            <option value='<?php echo $res['postePrefere'] ?>'>Valeur actuel : <?php echo $res['postePrefere'] ?></option>
+            <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" value="<?php echo $res['nom'] ?>" name="nom" id="nom" class="form-control" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="prenom" class="form-label">Prenom</label>
+                        <input type="text" value="<?php echo $res['prenom'] ?>" name="prenom" id="prenom" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="numLicence" class="form-label">Numéro de licence</label>
+                        <input type="text" value="<?php echo $res['numLicence'] ?>" name="numLicence" required size="11" minlength ="10" maxlength="10" id="numLicence" class="form-control" disabled>
+                    </div>
+                    <div class="col-auto">
+                        <label for="dateDeNaissance" class="form-label">Date de naissance</label>
+                        <input type="date" value="<?php echo $res['dateDeNaissance'] ?>" name="dateDeNaissance" id="dateDeNaissance" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="poids" class="form-label">Poids</label>
+                        <input type="number" value="<?php echo $res['poids'] ?>" name="poids" id="poids" class="form-control" required >
+                        
+                    </div>
+                    <div class="col-auto">
+                        <label for="taille" class="form-label">Taille</label>
+                        <input type="number" value="<?php echo $res['taille'] ?>" name="taille" id="taille" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="postePrefere" class="form-label" >Poste Préféré</label>
+                        <select name='postePrefere' id="postePrefere" class="form-select">
+                            <option value="<?php echo $res['postePrefere'] ?>"><?php echo $res['postePrefere'] ?></option>
                             <option value='AD'>Attaquant droit</option>
                             <option value='AG'>Attaquant gauche</option>
                             <option value='AC'>Attanquant centre</option>
@@ -71,16 +99,32 @@
                             <option value='DG'>Défenseur gauche</option>
                             <option value='DC'>Défenseur centre</option>
                             <option value='GB'>Gardien de but</option>
-                        </select><br />
-            Photo : <input type="file" name="photo" accept="image/png,image/jpg" value=<?php echo $res['photo']?>> <br />
-            Statut :<select name='statut' >
-                        <option value='<?php echo $res['statut'] ?>'>Valeur actuel : <?php echo $res['statut'] ?></option>
-                        <option value='Actif'>Actif</option>
-                        <option value='Blesse'>Bléssé</option>
-                        <option value='Suspendu'>Suspendu</option>
-                        <option value='Absent'>Absent</option>
-                    </select><br />
-            <input type='Submit' value='Valider'>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="statut" class="form-label">Statut</label>
+                        <select name='statut' id="statut" class="form-select">
+                            <option value="<?php echo $res['statut'] ?>"><?php echo $res['statut'] ?></option>
+                            <option value='Actif'>Actif</option>
+                            <option value='Blesse'>Bléssé</option>
+                            <option value='Suspendu'>Suspendu</option>
+                            <option value='Absent'>Absent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                        <img src="photos-m3104/<?php echo $res['photo'] ?>"  class="img-thumbnail rounded-0" style="margin-top: 20px; margin-bottom: 15px;">
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="photo" class="form-label">Photo</label>
+                        <input type="file" name="photo" accept="image/png,image/jpg" id="photo" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
+                </div>
+            </div>
         </form>
         
     </body>

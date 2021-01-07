@@ -19,6 +19,13 @@
              die('Error :' . $e->getMessage());
         }
         if (!empty($_FILES['photo'])) {
+            $req2 = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence = ?");
+            $req2->execute(array($numLicence));
+            $res2 = $req2->fetch();
+            if ($req2 != false){
+                $filename= $res2['photo'];
+                unlink("photos-m3104/".$filename);
+            }
             $filename=$_FILES['photo']['name'];
             $fileExt = "." . strtolower(substr(strchr($filename, "."), 1));
             $uniqueName = md5(uniqid(rand(), true));

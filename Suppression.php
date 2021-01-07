@@ -20,8 +20,6 @@
         if ($req2 != false){
             $filename= $res2['photo'];
             unlink("photos-m3104/".$filename);
-        } else {
-            header("location:".  $_SERVER['HTTP_REFERER']); 
         }
         $req = $linkpdo->prepare("DELETE FROM football.players WHERE numLicence = ?");
         $req->execute(array($id));

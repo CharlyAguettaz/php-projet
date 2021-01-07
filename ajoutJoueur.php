@@ -1,5 +1,5 @@
 <?php
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut']) && !empty($_POST['photo'])) {
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut'])) {
         $nom = htmlentities($_POST['nom']);
         $prenom = htmlentities($_POST['prenom']); 
         $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
@@ -28,8 +28,7 @@
                 $fileExt = "." . strtolower(substr(strchr($filename, "."), 1));
                 $uniqueName = md5(uniqid(rand(), true));
                 $newFileName = $uniqueName . $fileExt;
-                move_uploaded_file($_FILES["photo"]["tmp_name"], "./photos-m3104/" . $newFileName);
-                print("Photo upload");
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "photos-m3104/" . $newFileName);
                 $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
                 $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
                 if ($req2 != FALSE) {
@@ -45,6 +44,7 @@
             echo "Numéro de licence déjà existante !";
         }
     }
+
 ?>
 
 <html>
@@ -87,7 +87,7 @@
     </header>
     <body>
         <h1> Ajouter un Joueur </h1><br/>
-            <form action="<?php $_SERVER['PHP_SELF']?>" method="post" style="margin-left: 3%">
+            <form action="<?php $_SERVER['PHP_SELF']?>" method="post" style="margin-left: 3%" enctype="multipart/form-data">
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="nom" class="form-label">Nom</label>

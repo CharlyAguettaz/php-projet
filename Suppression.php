@@ -14,7 +14,7 @@
             die('Erreur : '. $e->getMessage());    
         } 
         $req2 = $linkpdo->prepare("SELECT * FROM football.players WHERE numLicence = ?");
-        $req2->execute();
+        $req2->execute(array($id));
         $res2 = $req2->fetch();
         
         if ($req2 != false){

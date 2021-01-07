@@ -1,3 +1,11 @@
+<script>
+    var myModal = document.getElementById('myModal');
+    var myInput = document.getElementById('myInput');
+    
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    })
+</script>
 <?php
     if (isset($_POST['id']) && !empty($_POST['id'] )) {
         $id_rencontre = htmlentities($_POST['id']);
@@ -26,24 +34,12 @@
         $req3 = $linkpdo->prepare("UPDATE football.rencontre SET Points_equipe = :points_equipe, Points_adversaire = :points_adversaire WHERE Id_rencontre = :Id_rencontre");
         $req3->execute(array('points_adversaire' => $Points_adversaire,'points_equipe' => $Points_equipe,'Id_rencontre' => $id_rencontre));
     }
-        
-    if (isset($_POST['AD']) && !empty($_POST['AD'])) {
-        $numLicence = htmlentities($_POST['AD']);
-        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire) VALUE(?,?,'Attaquant Droit','')");
-        $req5->execute(array($id_rencontre,$numLicence));
-    }
 
-    if (isset($_POST['AG']) && !empty($_POST['AG'])) {
-        $numLicence = htmlentities($_POST['AG']);
-        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire) VALUE(?,?,'Attaquant Gauche','')");
+    if (isset($_POST['ajoutJoueur']) && !empty($_POST['ajoutJoueur'])) {
+        $numLicence = $_POST['ajoutJoueur'];
+        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire,Note,Titulaire) VALUES(?,?,'','','',?)");
         $req5->execute(array($id_rencontre,$numLicence));
-    }
-
-    if (isset($_POST['AC']) && !empty($_POST['AC'])) {
-        $numLicence = htmlentities($_POST['AC']);
-        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire) VALUE(?,?,'Attaquant Droit','')");
-        $req5->execute(array($id_rencontre,$numLicence));
-    }
+    } 
 
 ?>
 
@@ -88,118 +84,61 @@
     <body>
         <h1>Details de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            <p>
-                Score du match : Agen <input type="number" value="<?php echo $res['Points_equipe'] ?>" name='Points_equipe' > - 
-                <input type ="number" value=<?php echo $res['Points_adversaire']?> name ='Points_adversaire' > <?php echo $res['Nom_adversaire'] ?>
-            </p>
-            Attaquant droit :
-            <select name='AD' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch();
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            Attaquant gauche :
-            <select name='AG' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch(); 
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            Attaquant centre :
-            <select name='AC' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch(); 
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            Défenseur droit :
-            <select name='DD' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch(); 
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            Défenseur gauche :
-            <select name='DG' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch(); 
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            Défenseur centre :
-            <select name='DC' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch(); 
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            Gardien de but :
-            <select name='GB' required>
-                <option></option>
-                <?php
-                    $req2->execute();
-                    $res2=$req2->fetch();
-                    if ($res2 != false) {
-                        do { 
-                            if ($res2['statut'] == "Actif") { ?>
-                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                            <?php }
-                        } while($res2=$req2->fetch());
-                    }
-                ?>
-            </select><br />
-            <input type="hidden" name='id' value="<?php echo $id_rencontre ?>"">
-            <input type="submit" value="Valider">
+            Score du match : Agen 
+            <input type="number" value="<?php echo $res['Points_equipe'] ?>" name='Points_equipe' > - 
+            <input type ="number" value=<?php echo $res['Points_adversaire']?> name ='Points_adversaire' > <?php echo $res['Nom_adversaire'] ?>
+            <input type="hidden" name='id' value="<?php echo $id_rencontre ?>">
+            <input type="submit" value="Sauvegarder">
         </form>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ajouter une participant
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                    <div>
+                        <div class="col-auto">
+                            <label for="nom" class="form-label">Nom</label>
+                            <select name='JoueurAjoutee' id="nom" required class="form-control">
+                                <option></option>
+                                <?php
+                                    $req2->execute();
+                                    $res2=$req2->fetch();
+                                    if ($res2 != false) {
+                                        do { 
+                                            if ($res2['statut'] == "Actif" && $req4 != false) { ?>
+                                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                                            <?php }
+                                        } while($res2=$req2->fetch());
+                                    }
+                                ?>
+                            </select>
+                            <label for="Titulaire" class="form-label">Titulaire ou remplaçant?</label>
+                            <select name='Titulaire' id='Titulaire' required class="form-control">
+                                    <option></option>
+                                    <option value="1">Titulaire</option>
+                                    <option value="0">Remplaçant</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        </div >
+                    </div>
+                    <input type="hidden" value="<?php echo $id_rencontre ?>" name="id">
+                </form>
+            </div>
+        </div>
     </body>
 </html>

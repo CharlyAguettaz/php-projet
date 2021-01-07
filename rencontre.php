@@ -96,7 +96,7 @@
                               </tr>
                          </tbody>
                     <?php } while ($res = $req->fetch());
-               
+               }
           ?>
      </body>
 </html>

@@ -54,6 +54,8 @@ CREATE TABLE participant(
     numLicence CHAR(10),
     Position VARCHAR(50),
     Commentaire TEXT,
+    Note TINYINT,
+    Titulaire BOOLEAN,
     PRIMARY KEY(Id_rencontre, numLicence),
     FOREIGN KEY(Id_rencontre) REFERENCES rencontre(Id_rencontre),
     FOREIGN KEY(numLicence) REFERENCES players(numLicence)

@@ -69,7 +69,7 @@
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="numLicence" class="form-label">Numéro de licence</label>
-                        <input type="text" value="<?php echo $res['numLicence'] ?>" name="numLicence" required size="11" minlength ="10" maxlength="10" id="numLicence" class="form-control" disabled>
+                        <input type="text" value="<?php echo $res['numLicence'] ?>" name="numLicence" required size="11" minlength ="10" maxlength="10" id="numLicence" class="form-control" readonly>
                     </div>
                     <div class="col-auto">
                         <label for="dateDeNaissance" class="form-label">Date de naissance</label>
@@ -118,7 +118,7 @@
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="photo" class="form-label">Photo</label>
-                        <input type="file" name="photo" accept="image/png,image/jpg" id="photo" class="form-control" required>
+                        <input type="file" name="photo" accept="image/png,image/jpg" id="photo" class="form-control">
                     </div>
                 </div>
                 <div class="col-auto">

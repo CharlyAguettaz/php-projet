@@ -145,7 +145,7 @@
                                              <td><?php echo $res['taille'] ?></td>
                                              <td><?php echo $res['postePrefere'] ?></td>
                                              <td><?php echo $res['statut'] ?></td>
-                                             <td><img src="photos-m3104/<?php echo $res['photo'] ?>"  class="img-thumbnail rounded-0"></td>
+                                             <td class="col-mblank-1"><img src="photos-m3104/<?php echo $res['photo'] ?>"  style="width: 75px;"></td>
                                              <td><form action="modifier.php" method="post">
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
                                                   <input type='submit' value='Modifier'>

@@ -1,37 +1,37 @@
 <?php
-            if (!empty($_POST['date']) && !empty($_POST['heure']) && !empty($_POST['adversaire']) && !empty($_POST['lieu'])) {
-                $date = htmlentities($_POST['date']);
-                $heure = htmlentities($_POST['heure']); 
-                $adversaire = htmlentities($_POST['adversaire']);
-                $lieu = htmlentities($_POST['lieu']);
-                $points_equipe = 0;
-                $points_adversaire = 0;
-                
-                $db = 'football';
-                $login="root";
-                $mdp="";
-                try {
-                    $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
-                }
-                catch (Exeption $e) {
-                    die('Error :' . $e->getMessage());
-                }
-                $req2 = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Date_rencontre LIKE ?");
-                $req2->execute(array($date));
-                $res=$req2->fetch();
-                if ($res == false) {
-                    $req = $linkpdo->prepare("INSERT INTO football.rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_rencontre, Points_equipe, Points_adversaire) VALUES(:date, :heure, :adversaire, :lieu, :points_equipe, :points_adversaire)");
-                    $req->execute(array('date' => $date, 'heure' => $heure, 'adversaire' => $adversaire, 'lieu' => $lieu, 'points_equipe' => $points_equipe,  'points_adversaire' => $points_adversaire));
-                    if ($req != FALSE) {
-                        print("Ajout effectuer avec succés");
-                    } else {
-                        print("Erreur execute");
-                    }
-                } else {
-                    echo "Ajout impossible, un autre match est déjà prévu a ce jour.";
-                }
+    if (!empty($_POST['date']) && !empty($_POST['heure']) && !empty($_POST['adversaire']) && !empty($_POST['lieu'])) {
+        $date = htmlentities($_POST['date']);
+        $heure = htmlentities($_POST['heure']); 
+        $adversaire = htmlentities($_POST['adversaire']);
+        $lieu = htmlentities($_POST['lieu']);
+        $points_equipe = 0;
+        $points_adversaire = 0;
+        
+        $db = 'football';
+        $login="root";
+        $mdp="";
+        try {
+            $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
+        }
+        catch (Exeption $e) {
+            die('Error :' . $e->getMessage());
+        }
+        $req2 = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Date_rencontre LIKE ?");
+        $req2->execute(array($date));
+        $res=$req2->fetch();
+        if ($res == false) {
+            $req = $linkpdo->prepare("INSERT INTO football.rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_rencontre, Points_equipe, Points_adversaire) VALUES(:date, :heure, :adversaire, :lieu, :points_equipe, :points_adversaire)");
+            $req->execute(array('date' => $date, 'heure' => $heure, 'adversaire' => $adversaire, 'lieu' => $lieu, 'points_equipe' => $points_equipe,  'points_adversaire' => $points_adversaire));
+            if ($req != FALSE) {
+                print("Ajout effectuer avec succés");
+            } else {
+                print("Erreur execute");
             }
-        ?>
+        } else {
+            echo "Ajout impossible, un autre match est déjà prévu a ce jour.";
+        }
+    }
+?>
 
 <html>
     <head>

@@ -56,12 +56,29 @@
     <body>  
         <h1>Modifier une rencontre<br /></h1>      
         <form action="modificationRencontre.php" method="post">
-            Date : <input type="date" value="<?php echo $res['Date_rencontre'] ?>" name="date" required><br />
-            Heure : <input type="text" value="<?php echo $res['Heure_rencontre'] ?>" name="heure" required><br />
-            Adversaire : <input type="text" value="<?php echo $res['Nom_adversaire'] ?>" name="adversaire" required><br />
-            Lieu : <input type="text" value="<?php echo $res['Lieu_de_rencontre'] ?>" name="lieu" required><br />
-            <input type="hidden" value="<?php echo $res['Id_rencontre'] ?>" name='Id_rencontre'>
-            <input type='Submit' value='Valider'>
+        <div class="row gy-3 gx-5 align-items-center">
+                <div class="col-auto">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" value="<?php echo $res['Date_rencontre'] ?>" name="date" class="form-control" id="date" required>
+                </div>
+                <div class="col-auto">
+                    <label for="heure" class="form-label">Heure</label>
+                    <input type="time" value="<?php echo $res['Heure_rencontre'] ?>"  name="heure" class="form-control" id="heure" required>
+                </div>
+            </div>
+            <div class="row gy-3 gx-5 align-items-center">
+                <div class="col-auto">
+                    <label for="adversaire" class="form-label">Adversaire</label>
+                    <input type="text" value="<?php echo $res['Nom_adversaire'] ?>"  name="adversaire" class="form-control" id="adversaire" required>
+                </div>
+                <div class="col-auto">
+                    <label for="lieu" class="form-label">Lieu</label>
+                    <input type="text" value="<?php echo $res['Lieu_de_rencontre'] ?>"  name="lieu" class="form-control" id="lieu" required>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
+            </div>
         </form>
     </body>
 </html>

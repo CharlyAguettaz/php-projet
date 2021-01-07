@@ -51,7 +51,7 @@ INSERT INTO rencontre(Date_rencontre, Heure_rencontre, Nom_adversaire, Lieu_de_r
 
 CREATE TABLE participant(
     Id_rencontre INT NOT NULL AUTO_INCREMENT,
-    numLicence VARCHAR(10),
+    numLicence CHAR(10),
     Position VARCHAR(50),
     Commentaire TEXT,
     PRIMARY KEY(Id_rencontre, numLicence),

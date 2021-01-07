@@ -86,8 +86,8 @@
                                         <input type='submit' value='Modifier'>
                                    </form><td>
                                    <td><form action="suppressionRencontre.php" method="post">
-                                        <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                        <input type='submit' value='Supprimer'><br />
+                                                  <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                                  <input type='submit' value='Supprimer'><br />
                                    </form><td>
                                    <td><form action="detailsRencontre.php" method="post">
                                         <input type='hidden' value="<?php echo $id ?>" name ='id'>
@@ -96,7 +96,7 @@
                               </tr>
                          </tbody>
                     <?php } while ($res = $req->fetch());
-               }
+               
           ?>
      </body>
 </html>

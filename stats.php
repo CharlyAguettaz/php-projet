@@ -8,17 +8,24 @@
      catch (Exeption $e) {
           die('Error :' . $e->getMessage());
      }
-     $req = $linkpdo->prepare("SELECT COUNT * FROM football.rencontre WHERE Points_equipe > Points_adversaire" );
+
+
+     
+     $req = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre WHERE Points_equipe > Points_adversaire" );
      $req->execute();
      $res=$req->fetch();
 
-     $req2 = $linkpdo->prepare("SELECT COUNT * FROM football.rencontre WHERE Points_equipe < Points_adversaire" );
+     $req2 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre WHERE Points_equipe < Points_adversaire" );
      $req2->execute();
      $res2=$req2->fetch();
 
-     $req3 = $linkpdo->prepare("SELECT COUNT * FROM football.rencontre WHERE Points_equipe = Points_adversaire" );
+     $req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre WHERE Points_equipe = Points_adversaire" );
      $req3->execute();
      $res3=$req3->fetch();
+
+     $req4 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre" );
+     $req4->execute();
+     $res4=$req4->fetch();
 ?>
 
 <html>
@@ -72,9 +79,9 @@
                 
                    <tbody>
                         <tr>
-                            <td><?php echo $res ?></td>
-                            <td><?php echo $res2 ?></td>
-                            <td><?php echo $res3 ?></td>
+                            <td><?php echo $res[0] . " (" . $res[0] / $res4[0] * 100 . "%)"  ?></td>
+                            <td><?php echo $res2[0] . " (" . $res2[0] / $res4[0] * 100 . "%)"  ?></td>
+                            <td><?php echo $res3[0] . " (" . $res3[0] / $res4[0] * 100 . "%)"  ?></td>
                         </tr>
                     <tbody>
             </table>

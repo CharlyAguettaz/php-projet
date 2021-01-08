@@ -42,9 +42,15 @@
             <h1>Page de connexion</h1>
         </p>
         <form action="<?php $_SERVER['PHP_SELF']?>" method='post'>
-            Identifiant : <input type='text' required name='username'><br />
-            Mot de passe : <input type='password' required name='password'><br />
-            <input type='submit' value='Connexion'>
+            <div class="col-auto">
+                <label for="username" class="form-label">Identifiant</label>
+                <input type='text' required name='username' id="username"><br />
+            </div>
+            <div class="col-auto">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type='password' required name='password' id="password"><br />
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 30px;">Connexion</button>
         </form>
     </body>
 </html>

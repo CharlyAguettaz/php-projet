@@ -11,6 +11,8 @@
     if ($_SESSION['user'] != 'root') {
         header("location:index.php");
     }
+    $nbJoueurTitulaire = 0;
+    $nbJoueurRemlacant = 0;
     $db = 'football';
     $login="root";
     $mdp="";
@@ -107,9 +109,6 @@
             <button type="submit" class="btn btn-primary">Sauvegarder le score</button>
         </form>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Ajouter un participant
-        </button>
 
         <?php if ($res4['numLicence'] != '') { ?>
             <table class='table'>
@@ -129,7 +128,13 @@
                 <?php do {
                     $id_numLicence = $res4['numLicence']; 
                     $req6->execute(array($id_numLicence));
-                    $res6 = $req6->fetch(); ?>
+                    $res6 = $req6->fetch();
+                    if ($res4['Titulaire']){ 
+                        $nbJoueurTitulaire = $nbJoueurTitulaire + 1;
+                    } else {
+                        $nbJoueurRemlacant = $nbJoueurRemlacant + 1;
+                    }
+                    ?>
                     <tbody>
                         <tr>
                             <td><?php echo $res4['numLicence']; ?></td>
@@ -145,8 +150,23 @@
                     </tbody>
                 <?php } while($res4 = $req4->fetch()); ?>
             </table>
+        <?php } ?> 
+        <div style="margin-left: 40px;">
+            <?php if ($nbJoueurRemlacant < 3 && $nbJoueurTitulaire < 11) { ?>
+                <p class="text-danger fw-bold">L'équipe manque encore de <?php echo (11-$nbJoueurTitulaire); ?> titulaires et de <?php echo (3-$nbJoueurRemlacant); ?> remplaçant !</p>
+            <?php } elseif ($nbJoueurRemlacant == 3 && $nbJoueurTitulaire < 11) { ?>
+                <p class="text-danger fw-bold">L'équipe manque encore de <?php echo (11-$nbJoueurTitulaire); ?> titulaires !</p>
+            <?php } elseif ($nbJoueurRemlacant <3 && $nbJoueurTitulaire == 11) { ?>
+                <p class="text-danger fw-bold">L'équipe manque encore de <?php echo (11-$nbJoueurRemlacant); ?> remplaçants !</p>
+            <?php } else { ?>
+                <p class="text-succes fw-bold">L'équipe est au complet !</p> 
+            <?php } ?>
+            <?php if ($nbJoueurTitulaire < 11 ||$nbJoueurRemlacant < 3) { ?>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ajouter un participant
+            </button>
         <?php } ?>
-
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -181,8 +201,12 @@
                                 <label for="Titulaire" class="form-label">Titulaire ou remplaçant?</label>
                                 <select name='Titulaire' id='Titulaire' required class="form-control">
                                         <option>Choisir une option..</option>
-                                        <option value="1">Titulaire</option>
-                                        <option value="0">Remplaçant</option>
+                                        <?php if ($nbJoueurTitulaire < 11) { ?>
+                                            <option value="1">Titulaire</option>
+                                        <?php }
+                                            if ($nbJoueurRemlacant < 3) { ?>
+                                            <option value="0">Remplaçant</option>
+                                        <?php } ?> 
                                 </select>
                             </div>
                             

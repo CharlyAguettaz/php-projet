@@ -78,7 +78,6 @@
                                         <th scope="col">Date de naissance</th>
                                         <th scope="col">Poids</th>
                                         <th scope="col">Taille</th>
-                                        <th scope="col">Poste préférer</th>
                                         <th scope="col">Statut</th>
                                         <th scope="col">Photo</th>
                                         <th></th>
@@ -96,7 +95,6 @@
                                              <td><?php echo $res['dateDeNaissance'] ?></td>
                                              <td><?php echo $res['poids'] ?></td>
                                              <td><?php echo $res['taille'] ?></td>
-                                             <td><?php echo $res['postePrefere'] ?></td>
                                              <td><?php echo $res['statut'] ?></td>
                                              <td><?php echo $res['photo'] ?></td>
                                              <td><form action="modifier.php" method="post">
@@ -134,7 +132,6 @@
                                         <th scope="col">Date de naissance</th>
                                         <th scope="col">Poids</th>
                                         <th scope="col">Taille</th>
-                                        <th scope="col">Poste préférer</th>
                                         <th scope="col">Statut</th>
                                         <th scope="col">Photo</th>
                                         <th></th>
@@ -151,7 +148,6 @@
                                              <td><?php echo $res['dateDeNaissance'] ?></td>
                                              <td><?php echo $res['poids'] ?></td>
                                              <td><?php echo $res['taille'] ?></td>
-                                             <td><?php echo $res['postePrefere'] ?></td>
                                              <td><?php echo $res['statut'] ?></td>
                                              <td class="col-mblank-1"><img src="photos-m3104/<?php echo $res['photo'] ?>"  style="width: 75px;"></td>
                                              <td><form action="modifier.php" method="post">

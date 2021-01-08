@@ -172,11 +172,11 @@
                                                  echo $res6[0] / $res3[0] * 100 . "%"; 
                                             } ?></td>
                                             <td><?php 
-                                            if($res7[0] >= $res8[0] && $res7[0] >= $res9[0]){
+                                            if($res7[0] > $res8[0] && $res7[0] > $res9[0]){
                                                 echo "Attaquant";
                                                 $req11->execute(array($id));
                                             }   
-                                            elseif($res8[0] >= $res9[0]){
+                                            elseif($res8[0] > $res9[0]){
                                                 echo "Millieu";
                                                 $req12->execute(array($id));
                                             }

@@ -50,7 +50,7 @@
 
             $req7 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND participant.Position = 'AG'
+                                          AND participant.Position = 'AT'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
             $req7->execute(array($id));
@@ -58,7 +58,7 @@
 
             $req8 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND participant.Position = 'DG'
+                                          AND participant.Position = 'ML'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
             $req8->execute(array($id));
@@ -66,11 +66,34 @@
 
             $req9 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND participant.Position = 'DD'
+                                          AND participant.Position = 'DF'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
             $req9->execute(array($id));
             $res9 = $req9->fetch();
+
+            $req10 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
+                                          WHERE players.numLicence = ? 
+                                          AND participant.Position = 'GB'
+                                          AND players.numLicence = participant.numlicence
+                                          AND rencontre.Id_rencontre = participant.Id_rencontre");
+            $req10->execute(array($id));
+            $res10 = $req10->fetch();
+
+            $req11 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'AT' WHERE players.numLicence = ?");
+            $req11->execute(array($id));
+
+            $req12 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'ML' WHERE players.numLicence = ?");
+            $req12->execute(array($id));
+
+            $req13 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'DF' WHERE players.numLicence = ?");
+            $req13->execute(array($id));
+
+            $req14 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'GB' WHERE players.numLicence = ?");
+            $req14->execute(array($id));
+
+            $req15 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'NA' WHERE players.numLicence = ?");
+            $req15->execute(array($id));
           }
           
 
@@ -145,12 +168,23 @@
                                             <td><?php 
                                             if($res7[0] >= $res8[0] && $res7[0] >= $res9[0]){
                                                 echo "Attaquant";
+                                                $req11;
                                             }   
                                             elseif($res8[0] >= $res9[0]){
                                                 echo "Millieu";
+                                                $req12;
+                                            }
+                                            elseif($res9[0] > $res10[0]){
+                                                echo "Defenceur";
+                                                $req13;
+                                            }
+                                            elseif($res10[0] > 0){
+                                                echo "Gardien de But";
+                                                $req14;
                                             }
                                             else{
-                                                echo "Defenceur";
+                                                echo "Pas encore joué";
+                                                $req15;
                                             }
                                             ?></td>
                                                 

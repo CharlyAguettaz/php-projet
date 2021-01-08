@@ -78,7 +78,7 @@
     <body>
         <h1> Modification de rencontre </h1><br/>
         <p>
-            <a href="recherche.php">Revenir sur la page de recherche<a>
+            <a href="rencontre.php">Revenir sur la page de recherche<a>
         <p>
     </body>
 </html>

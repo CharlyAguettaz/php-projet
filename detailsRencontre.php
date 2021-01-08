@@ -24,15 +24,6 @@
     if (isset($_POST['id']) && !empty($_POST['id'] )) {
         $id_rencontre = htmlentities($_POST['id']);
     }
-    $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
-    $req->execute(array($id_rencontre));
-    $res=$req->fetch();
-    $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence,statut FROM football.players");
-    $req6 = $linkpdo->prepare("SELECT nom,prenom FROM football.players WHERE numLicence LIKE ?");
-    $req4 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ?");
-    $req4->execute(array($id_rencontre));
-    $res4 = $req4->fetch();
-    $req7 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ? AND numLicence LIKE ?");
     
     if (isset($_POST['Points_equipe']) && isset($_POST['Points_adversaire'])) {
         $Points_equipe=htmlentities($_POST['Points_equipe']);
@@ -54,6 +45,16 @@
         $reqSupp = $linkpdo->prepare("DELETE FROM football.participant WHERE numLicence LIKE ?");
         $reqSupp->execute(array($numLicence));
     }
+
+    $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
+    $req->execute(array($id_rencontre));
+    $res=$req->fetch();
+    $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence,statut FROM football.players");
+    $req6 = $linkpdo->prepare("SELECT nom,prenom FROM football.players WHERE numLicence LIKE ?");
+    $req4 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ?");
+    $req4->execute(array($id_rencontre));
+    $res4 = $req4->fetch();
+    $req7 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ? AND numLicence LIKE ?");
 ?>
 
 <html>

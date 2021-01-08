@@ -66,8 +66,7 @@
                                    <th scope="col">Date de la rencontre</th>
                                    <th scope="col">Heure de la rencontre</th>
                                    <th scope="col">Lieu de la rencontre</th>
-                                   <th scope="col">Score de l'équipe</th>
-                                   <th scope="col">Score de l'adversaire</th>
+                                   <th scope="col">Score</th>
                                    <th></th>
                                    <th></th>
                                    <th></th>
@@ -81,8 +80,7 @@
                                    <td><?php echo $res['Date_rencontre'] ?></td>
                                    <td><?php echo $res['Heure_rencontre'] ?></td>
                                    <td><?php echo $res['Lieu_de_rencontre'] ?></td>
-                                   <td><?php echo $res['Points_equipe'] ?></td>
-                                   <td><?php echo $res['Points_adversaire'] ?></td>
+                                   <td><?php echo "Agen " . $res['Points_equipe'] . "-" . $res['Points_adversaire'] . " " . $res['Nom_adversaire'] ?></td>
                                    <td><form action="modifierRencontre.php" method="post">
                                         <input type='hidden' value="<?php echo $id ?>" name='id'>
                                         <input type='submit' value='Modifier'>

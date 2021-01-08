@@ -14,3 +14,21 @@ h1{
 form{
     margin: 1% 5% 0% 5%;
 }
+
+.tableau{
+    width : 50%;
+    margin : auto ; 
+    
+}
+
+table, th, td{
+    margin-top: 30px;
+    text-align: center;
+    border:2px solid rgb(190, 190, 190);
+    border-style: solid;
+    background-color: #f8f9fa ;
+}
+
+.none{
+    border:none;
+}

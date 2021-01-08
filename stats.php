@@ -70,6 +70,7 @@
     </header>
      <body>
           <h1>Stats De l'équipe</h1><br/>
+          <div class="tableau">
           <table class='table'>
                         <thead>
                             <tr>
@@ -87,6 +88,7 @@
                         </tr>
                     <tbody>
             </table>
+    </div>
 
      </body>
 </html>

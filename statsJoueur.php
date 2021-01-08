@@ -11,7 +11,6 @@
           if(isset($_POST['id']) && !empty($_POST['id'])){
             $id = $_POST['id'];
                     
-
             $req2 = $linkpdo->prepare("SELECT * FROM football.players WHERE players.numLicence = ?");
             $req2->execute(array($id));
             $res2 = $req2->fetch();
@@ -81,19 +80,14 @@
             $res10 = $req10->fetch();
 
             $req11 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'AT' WHERE players.numLicence = ?");
-            $req11->execute(array($id));
-
+            
             $req12 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'ML' WHERE players.numLicence = ?");
-            $req12->execute(array($id));
-
+            
             $req13 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'DF' WHERE players.numLicence = ?");
-            $req13->execute(array($id));
-
+            
             $req14 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'GB' WHERE players.numLicence = ?");
-            $req14->execute(array($id));
 
             $req15 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'NA' WHERE players.numLicence = ?");
-            $req15->execute(array($id));
           }
           
 
@@ -168,23 +162,23 @@
                                             <td><?php 
                                             if($res7[0] >= $res8[0] && $res7[0] >= $res9[0]){
                                                 echo "Attaquant";
-                                                $req11;
+                                                $req11->execute(array($id));
                                             }   
                                             elseif($res8[0] >= $res9[0]){
                                                 echo "Millieu";
-                                                $req12;
+                                                $req12->execute(array($id));
                                             }
                                             elseif($res9[0] > $res10[0]){
                                                 echo "Defenceur";
-                                                $req13;
+                                                $req13->execute(array($id));
                                             }
                                             elseif($res10[0] > 0){
                                                 echo "Gardien de But";
-                                                $req14;
+                                                $req14->execute(array($id));
                                             }
                                             else{
                                                 echo "Pas encore joué";
-                                                $req15;
+                                                $req15->execute(array($id));
                                             }
                                             ?></td>
                                                 

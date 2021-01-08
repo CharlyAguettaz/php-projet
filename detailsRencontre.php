@@ -50,13 +50,6 @@
         $reqSupp = $linkpdo->prepare("DELETE FROM football.participant WHERE numLicence LIKE ?");
         $reqSupp->execute(array($numLicence));
     }
-
-    if (isset($_POST['editer']) && !empty($_POST['editer'])){
-        $numLicence=$_POST['editer'];
-        $reqEditer = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ? AND numLicence LIKE ?");
-        $reqEditer->execute(array($id_rencontre,$numLicence));
-        $resEditer = $reqEditer->fetch();
-    } 
 ?>
 
 <html>
@@ -100,13 +93,13 @@
         </nav>
     </header>
     <body>
-        <h1>Details de la rencontre entre Agen - <?php echo $res['Nom_adversaire'] ?></h1>
+        <h1>Details de la rencontre contre <?php echo $res['Nom_adversaire'] ?></h1>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            Score du match : Agen 
-            <input type="number" value="<?php echo $res['Points_equipe'] ?>" name='Points_equipe' > - 
-            <input type ="number" value=<?php echo $res['Points_adversaire']?> name ='Points_adversaire' > <?php echo $res['Nom_adversaire'] ?>
+            Score du match : Notre équipe
+            <input type="number" value="<?php echo $res['Points_equipe'] ?>" name='Points_equipe' min="0" max="50"> - 
+            <input type ="number" value=<?php echo $res['Points_adversaire']?> name ='Points_adversaire' min="0" max="50"> <?php echo $res['Nom_adversaire'] ?>
             <input type="hidden" name='id' value="<?php echo $id_rencontre ?>">
-            <input type="submit" value="Sauvegarder">
+            <button type="submit" class="btn btn-primary">Sauvegarder le score</button>
         </form>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -140,8 +133,8 @@
                             <td><?php if($res4['Titulaire']){echo "Titulaire";} else {echo "Remplaçant";} ?></td>
                             <td><?php echo $res4['Position']; ?></td>
                             <td><?php echo $res4['Note']."/10"; ?></td>
-                            <td><?php if ($res4['Commentaire'] == '') {echo "Commentaire à éditer";} else { ?> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CommentaireModal"> Voir le commentaire </button> <?php ;} ?></td>
-                            <td><form action="detailsRencontreEditer.php" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="editer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary"> Editer </button></form></td>
+                            <td><?php if ($res4['Commentaire'] == '') {?><p class="text-danger fw-bold"> Commentaire non éditer !<p><?php ;} else {?> <p class="text-success fw-bold"> Commentaire déjà éditer <p><?php ;} ?></td>
+                            <td><form action="detailsRencontreEditer.php" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="numLicence" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary"> Editer </button></form></td>
                             <td><form action="<?php $_SERVER['PHP_SELF']?>" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="supprimer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary">Supprimer</button></form></td>
                         <tr>
                     </tbody>

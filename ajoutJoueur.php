@@ -113,12 +113,12 @@
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="poids" class="form-label">Poids</label>
-                        <input type="number" name="poids" id="poids" class="form-control" required >
+                        <input type="number" name="poids" id="poids" class="form-control" min="10" max="200" required >
                         
                     </div>
                     <div class="col-auto">
                         <label for="taille" class="form-label">Taille</label>
-                        <input type="number" name="taille" id="taille" class="form-control" required>
+                        <input type="number" name="taille" id="taille" class="form-control" min="0" max="220" required>
                     </div>
                 </div>
                     <div class="row gy-3 gx-5 align-items-center">

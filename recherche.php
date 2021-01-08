@@ -44,6 +44,8 @@
                             <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="stats.php">Statistiques des matchs</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -51,7 +53,7 @@
         </nav>
     </header>
      <body>
-          <h1>Rechercher un joueur<br /></h1>
+          <h1>Rechercher un joueur</h1><br/>
           <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
                <input type="text" name="nom">
                <input type="submit" value="Rechercher"><br />

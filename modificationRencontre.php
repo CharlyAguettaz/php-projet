@@ -64,6 +64,8 @@
                             <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="stats.php">Statistiques des matchs</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -71,7 +73,7 @@
         </nav>
     </header>
     <body>
-        <h1> Modification de rencontre </h1>
+        <h1> Modification de rencontre </h1><br/>
         <p>
             <a href="recherche.php">Revenir sur la page de recherche<a>
         <p>

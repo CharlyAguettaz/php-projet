@@ -65,6 +65,8 @@
                             <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="stats.php">Statistiques des matchs</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -72,7 +74,7 @@
         </nav>
     </header>
     <body>
-    <h1>Ajouter un match</h1> 
+    <h1>Ajouter un match</h1><br/>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
             <div class="row gy-3 gx-5 align-items-center">
                 <div class="col-auto">

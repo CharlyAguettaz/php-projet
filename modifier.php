@@ -47,6 +47,8 @@
                             <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="stats.php">Statistiques des matchs</a></li>
                         </ul>
                     </ul>
                 </div>

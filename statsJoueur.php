@@ -11,7 +11,9 @@
           if(isset($_POST['id']) && !empty($_POST['id'])){
             $id = $_POST['id'];
 
-            $req2 = $linkpdo->prepare("SELECT * FROM football.players");
+            $req2 = $linkpdo->prepare("SELECT * FROM football.players WHERE players.numLicence = ?");
+            $req2->execute(array($id));
+            $res2 = $req2->fetch();
 
             $req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ?
@@ -81,6 +83,8 @@
                             <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="stats.php">Statistiques des matchs</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -88,7 +92,7 @@
         </nav>
     </header>
      <body>
-          <h1>Stats de Joueur<br /></h1>
+          <h1>Stats de <?php echo $res2['nom'] . " " . $res2['prenom'] ?></h1><br/>
 
                          <table class='table'>
                               <thead>

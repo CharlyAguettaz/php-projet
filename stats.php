@@ -60,6 +60,8 @@
                             <li><a class="dropdown-item" href="ajoutRencontre.php">Ajouter un match</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="rencontre.php">Rechercher un match</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="stats.php">Statistiques des matchs</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -67,7 +69,7 @@
         </nav>
     </header>
      <body>
-          <h1>Stats De l'équipe<br /></h1>
+          <h1>Stats De l'équipe</h1><br/>
           <table class='table'>
                         <thead>
                             <tr>

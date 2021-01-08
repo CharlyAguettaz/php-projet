@@ -214,7 +214,7 @@
                                         <option value="AT">Attaquant</option>
                                         <option value="ML">Milleu</option>
                                         <option value="DF">Denfenseur</option>
-                                        <option value="GB">Milleu</option>
+                                        <option value="GB">Gardien</option>
                                 </select>
                             </div>
                         </div>

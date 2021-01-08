@@ -91,19 +91,6 @@
                 </div>
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
-                        <label for="postePrefere" class="form-label" >Poste Préféré</label>
-                        <select name='postePrefere' id="postePrefere" class="form-select">
-                            <option value="<?php echo $res['postePrefere'] ?>"><?php echo $res['postePrefere'] ?></option>
-                            <option value='AD'>Attaquant droit</option>
-                            <option value='AG'>Attaquant gauche</option>
-                            <option value='AC'>Attanquant centre</option>
-                            <option value='DD'>Défenseur droit</option>
-                            <option value='DG'>Défenseur gauche</option>
-                            <option value='DC'>Défenseur centre</option>
-                            <option value='GB'>Gardien de but</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
                         <label for="statut" class="form-label">Statut</label>
                         <select name='statut' id="statut" class="form-select">
                             <option value="<?php echo $res['statut'] ?>"><?php echo $res['statut'] ?></option>

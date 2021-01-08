@@ -1,11 +1,4 @@
 <?php 
-    echo $_POST['nom'];
-    echo $_POST['prenom'];
-    echo $_POST['dateDeNaissance'];
-    echo $_POST['poids'];
-    echo $_POST['taille'];
-    echo $_POST['numLicence'];
-    echo $_POST['postePrefere'];
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere'])) {
         $numLicence = htmlentities($_POST['numLicence']);
         $nom = htmlentities($_POST['nom']);

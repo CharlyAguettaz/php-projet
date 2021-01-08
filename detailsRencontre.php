@@ -175,7 +175,7 @@
                             <div class="col-auto">
                                 <label for="Titulaire" class="form-label">Titulaire ou remplaçant?</label>
                                 <select name='Titulaire' id='Titulaire' required class="form-control">
-                                        <option></option>
+                                        <option>Choisir une option..</option>
                                         <option value="1">Titulaire</option>
                                         <option value="0">Remplaçant</option>
                                 </select>

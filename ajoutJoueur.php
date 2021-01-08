@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
+
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['statut'])) {
         $nom = htmlentities($_POST['nom']);
         $prenom = htmlentities($_POST['prenom']); 
@@ -102,7 +107,7 @@
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="numLicence" class="form-label">Numéro de licence</label>
-                        <input type="text" name="numLicence" required size="11" minlength ="10" maxlength="10" id="numLicence" class="form-control">
+                        <input type="text" name="numLicence" required size="11" minlength ="10" maxlength="10" placeholder="10 chiffres" id="numLicence" class="form-control">
                     </div>
                     <div class="col-auto">
                         <label for="dateDeNaissance" class="form-label">Date de naissance</label>
@@ -112,12 +117,12 @@
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="poids" class="form-label">Poids</label>
-                        <input type="number" name="poids" id="poids" class="form-control" min="10" max="200" required >
+                        <input type="number" name="poids" id="poids" class="form-control" min="10" max="200" placeholder="kg" required >
                         
                     </div>
                     <div class="col-auto">
                         <label for="taille" class="form-label">Taille</label>
-                        <input type="number" name="taille" id="taille" class="form-control" min="0" max="220" required>
+                        <input type="number" name="taille" id="taille" class="form-control" min="0" max="220" placeholder="cm" required>
                     </div>
                 </div>
                     <div class="row gy-3 gx-5 align-items-center">

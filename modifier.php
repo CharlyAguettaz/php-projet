@@ -81,12 +81,12 @@
                 <div class="row gy-3 gx-5 align-items-center">
                     <div class="col-auto">
                         <label for="poids" class="form-label">Poids</label>
-                        <input type="number" value="<?php echo $res['poids'] ?>" name="poids" id="poids" class="form-control" required >
+                        <input type="number" value="<?php echo $res['poids'] ?>" name="poids" id="poids" placeholder="kg" class="form-control" required >
                         
                     </div>
                     <div class="col-auto">
                         <label for="taille" class="form-label">Taille</label>
-                        <input type="number" value="<?php echo $res['taille'] ?>" name="taille" id="taille" class="form-control" required>
+                        <input type="number" value="<?php echo $res['taille'] ?>" name="taille" id="taille" placeholder="cm" class="form-control" required>
                     </div>
                 </div>
                 <div class="row gy-3 gx-5 align-items-center">

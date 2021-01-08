@@ -28,7 +28,11 @@
             $Titulaire= $_POST['Titulaire'];
             $req = $linkpdo->prepare("UPDATE football.participant SET Position = ?, Note = ?, Commentaire = ?, Titulaire = ? WHERE Id_rencontre = ? AND numLicence = ?");
             $req->execute(array($Position,$note,$commentaire,$Titulaire,$id_rencontre,$numLicence));
-            
+            if ($req == true){
+                echo "Modification effectué";
+            } else {
+                echo "Erreur modification";
+            }
         }
     }
 ?>

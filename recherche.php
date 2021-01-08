@@ -56,8 +56,8 @@
      <body>
           <h1>Rechercher un joueur</h1><br/>
           <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-               <input type="text" name="nom">
-               <button type="submit" class="btn btn-primary">Rechercher</button>
+                    <input type="text" name="nom" placeholder="Recherchez un joueur par un mot clé(NOM)" style="width: 357.97728px;">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
           </form>
           <?php 
                if (!empty($_POST['nom']) && isset($_POST['nom'])) {
@@ -154,15 +154,15 @@
                                              <td class="col-mblank-1"><img src="photos-m3104/<?php echo $res['photo'] ?>"  style="width: 75px;"></td>
                                              <td><form action="modifier.php" method="post">
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                                  <input type='submit' value='Modifier'>
+                                                  <button type="submit" class="btn btn-primary">Modifier</button>
                                              </form></td>
                                              <td><form action="Suppression.php" method="post">
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                                  <input type='submit' value='Supprimer'><br />
+                                                  <button type="submit" class="btn btn-primary">Supprimer</button>
                                              </form><td>
                                              <td><form action="statsJoueur.php" method="post">
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                                  <input type='submit' value='Stats'><br />
+                                                  <button type="submit" class="btn btn-primary">Fiche Joueur</button>
                                              </form><td>
                                         </tr>
                                    </tbody>

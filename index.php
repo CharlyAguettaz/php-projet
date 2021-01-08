@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = htmlentities($_POST['username']);
         $password = htmlentities($_POST['password']); 
@@ -15,16 +16,18 @@
         $req = $linkpdo->prepare("SELECT * FROM football.users WHERE username LIKE :username AND password LIKE :password");
         $req->execute(array('username' => $username, 'password' => $password));
         $res=$req->fetch();
-        if ($res == false) {
+        if ($req == true) {
             do {
                 if ($res == false) {
                     echo "Identifiant ou mot de passe inconnue";
                 } else {
+                    $user = "root";
+                    $_SESSION['user'] = $user;
                     header('location:ajoutJoueur.php');
                 }
             } while($res=$req->fetch());
         } else {
-            header('location:ajoutJoueur.php');
+            echo "Erreur de connexion";
         }
     }
 ?>

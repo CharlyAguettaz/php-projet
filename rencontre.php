@@ -80,7 +80,7 @@
                                    <td><?php echo $res['Date_rencontre'] ?></td>
                                    <td><?php echo $res['Heure_rencontre'] ?></td>
                                    <td><?php echo $res['Lieu_de_rencontre'] ?></td>
-                                   <td><?php echo "Agen " . $res['Points_equipe'] . "-" . $res['Points_adversaire'] . " " . $res['Nom_adversaire'] ?></td>
+                                   <td><?php echo "Notre équipe " . $res['Points_equipe'] . "-" . $res['Points_adversaire'] . " " . $res['Nom_adversaire'] ?></td>
                                    <td><form action="modifierRencontre.php" method="post">
                                         <input type='hidden' value="<?php echo $id ?>" name='id'>
                                         <button type="submit" class="btn btn-primary">modifier</button>

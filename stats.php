@@ -13,27 +13,26 @@
           die('Error :' . $e->getMessage());
      }
 
-
-     
      $req = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre 
                                 WHERE Points_equipe > Points_adversaire
-                                AND rencontre.date < DATE( NOW() )" );
+                                AND rencontre.Date_rencontre < DATE( NOW() )" );
      $req->execute();
      $res=$req->fetch();
 
      $req2 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre 
                                 WHERE Points_equipe < Points_adversaire
-                                AND rencontre.date < DATE( NOW() )" );
+                                AND rencontre.Date_rencontre < DATE( NOW() )" );
      $req2->execute();
      $res2=$req2->fetch();
 
      $req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre, football.players, football.participant 
                                 WHERE Points_equipe = Points_adversaire
-                                AND rencontre.date < DATE( NOW() )" );
+                                AND rencontre.Date_rencontre < DATE( NOW() )" );
      $req3->execute();
      $res3=$req3->fetch();
 
-     $req4 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre" );
+     $req4 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre
+                                WHERE rencontre.Date_rencontre < DATE( NOW() )" );
      $req4->execute();
      $res4=$req4->fetch();
 ?>

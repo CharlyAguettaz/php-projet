@@ -154,7 +154,7 @@
                             <div class="col-auto">
                                 <label for="nom" class="form-label">Nom</label>
                                 <select name='joueurAjoutee' id="nom" required class="form-control">
-                                    <option></option>
+                                    <option>Choisir un joueur..</option>
                                     <?php
                                         $req2->execute();
                                         $res2=$req2->fetch();

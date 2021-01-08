@@ -146,6 +146,7 @@
                             <td><?php if ($res4['Commentaire'] == '') {?><p class="text-danger fw-bold"> Commentaire non éditer !<p><?php ;} else {?> <p class="text-success fw-bold"> Commentaire déjà éditer. <p><?php ;} ?></td>
                             <td><form action="detailsRencontreEditer.php" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="numLicence" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary"> Editer </button></form></td>
                             <td><form action="<?php $_SERVER['PHP_SELF']?>" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="supprimer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary">Supprimer</button></form></td>
+                            <td><form action="statsJoueur.php" method="post"><input type="hidden" value="<?php echo $res4['Commentaire']?>" name="commentaire"><input type='hidden' value="<?php echo $id_numLicence ?>" name='id'><button type="submit" class="btn btn-primary">Fiche Joueur</button></form></td>
                         <tr>
                     </tbody>
                 <?php } while($res4 = $req4->fetch()); ?>

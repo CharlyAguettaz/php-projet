@@ -24,7 +24,7 @@ $req2 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre
 $req2->execute();
 $res2 = $req2->fetch();
 
-$req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre, football.players, football.participant 
+$req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre
                                 WHERE Points_equipe = Points_adversaire
                                 AND rencontre.Date_rencontre < DATE( NOW() )");
 $req3->execute();

@@ -111,7 +111,7 @@
                                         </form>
                                    </td>
                                    <td>
-                                        <form action="Suppression.php" method="post">
+                                        <form action="suppression.php" method="post">
                                              <input type='hidden' value="<?php echo $id ?>" name='id'>
                                              <button type="submit" class="btn btn-primary">Supprimer</button>
                                         </form>

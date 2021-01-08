@@ -99,6 +99,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     $req14 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'GB' WHERE players.numLicence = ?");
 
     $req15 = $linkpdo->prepare("UPDATE football.players SET postePrefere = 'NA' WHERE players.numLicence = ?");
+
 }
 
 
@@ -196,9 +197,13 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         <div class="col-md-3">
             <img src="photos-m3104/<?php echo $res2['photo'] ?>" class="img-thumbnail rounded-0" style="margin-top: 20px; margin-bottom: 15px;" readonly>
         </div>
-        <div class="row gy-3 gx-5 align-items-center">
-
-        </div>
+        <?php if(isset($_POST['commentaire'])) { ?>
+            <div class="row gy-3 gx-5 align-items-center">
+                <div class="col-auto">
+                    <textarea readonly class="form-control" aria-label="With textarea" style="width: 525.988636px;height: 113.988636px;"><?php echo $_POST['commentaire']?></textarea>
+                </div>
+            </div>
+        <?php } ?>
         </div>
     </form>
     <h1>Stats de <?php echo $res2['nom'] . " " . $res2['prenom'] ?></h1>

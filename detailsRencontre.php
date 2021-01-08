@@ -24,6 +24,7 @@
     $req->execute(array($id_rencontre));
     $res=$req->fetch();
     $req2 = $linkpdo->prepare("SELECT nom,prenom,numLicence,statut FROM football.players");
+    $req6 = $linkpdo->prepare("SELECT nom,prenom FROM football.players WHERE numLicence LIKE ?");
     $req4 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ?");
     $req4->execute(array($id_rencontre));
     $res4 = $req4->fetch();
@@ -35,11 +36,18 @@
         $req3->execute(array('points_adversaire' => $Points_adversaire,'points_equipe' => $Points_equipe,'Id_rencontre' => $id_rencontre));
     }
 
-    if (isset($_POST['ajoutJoueur']) && !empty($_POST['ajoutJoueur'])) {
-        $numLicence = $_POST['ajoutJoueur'];
-        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire,Note,Titulaire) VALUES(?,?,'','','',?)");
-        $req5->execute(array($id_rencontre,$numLicence));
+    if (isset($_POST['joueurAjoutee']) && !empty($_POST['joueurAjoutee']) && isset($_POST['Titulaire']) && !empty($_POST['Titulaire'])) {
+        $numLicence = $_POST['joueurAjoutee'];
+        $titulaire= $_POST['Titulaire'];
+        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire,Note,Titulaire) VALUES(?,?,'','',0,?)");
+        $req5->execute(array($id_rencontre,$numLicence,$titulaire));
     } 
+
+    if(isset($_POST['supprimer']) && !empty($_POST['supprimer'])) {
+        $numLicence=$_POST['supprimer'];
+        $reqSupp = $linkpdo->prepare("DELETE FROM football.participant WHERE numLicence LIKE ?");
+        $reqSupp->execute(array($numLicence));
+    }
 
 ?>
 
@@ -95,49 +103,88 @@
             Ajouter une participant
         </button>
 
+        <?php if ($res4['numLicence'] != '') { ?>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th scope="col">Numéro de Licence</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Commentaire</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <?php do {
+                    $id_numLicence = $res4['numLicence']; 
+                    $req6->execute(array($id_numLicence));
+                    $res6 = $req6->fetch(); ?>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $res4['numLicence'] ?></td>
+                            <td><?php echo $res6['nom'] ?></td>
+                            <td><?php echo $res6['prenom'] ?></td>
+                            <td><? if($res4['Titulaire']){echo "Titulaire";} else {echo "Remplaçant";} ?></td>
+                            <td><? if ($res4['Position'] == '') {echo "Position à éditer";} else {echo $res4['Position'];} ?></td>
+                            <td><? echo $res4['Note']."/5" ?></td>
+                            <td><? if ($res4['Commentaire'] == '') {echo "Commentaire à éditer";} else { ?> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CommentaireModal"> Voir le commentaire </button> <?php ;} ?></td>
+                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditerModal"> Editer </button></td>
+                            <td><form action="<?php $_SERVER['PHP_SELF']?>" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="supprimer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary">Supprimer</button></form></td>
+                        <tr>
+                    </tbody>
+                <?php } while($res4 = $req4->fetch()); ?>
+            </table>
+        <?php } ?>
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-                    <div>
-                        <div class="col-auto">
-                            <label for="nom" class="form-label">Nom</label>
-                            <select name='JoueurAjoutee' id="nom" required class="form-control">
-                                <option></option>
-                                <?php
-                                    $req2->execute();
-                                    $res2=$req2->fetch();
-                                    if ($res2 != false) {
-                                        do { 
-                                            if ($res2['statut'] == "Actif" && $req4 != false) { ?>
-                                                <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
-                                            <?php }
-                                        } while($res2=$req2->fetch());
-                                    }
-                                ?>
-                            </select>
-                            <label for="Titulaire" class="form-label">Titulaire ou remplaçant?</label>
-                            <select name='Titulaire' id='Titulaire' required class="form-control">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un joueur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                        <div class="row gy-3 gx-5 align-items-center">
+                            <div class="col-auto">
+                                <label for="nom" class="form-label">Nom</label>
+                                <select name='joueurAjoutee' id="nom" required class="form-control">
                                     <option></option>
-                                    <option value="1">Titulaire</option>
-                                    <option value="0">Remplaçant</option>
-                            </select>
+                                    <?php
+                                        $req2->execute();
+                                        $res2=$req2->fetch();
+                                        if ($res2 != false) {
+                                            do { 
+                                                if ($res2['statut'] == "Actif" && $res4['numLicence'] == '') { ?>
+                                                    <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
+                                                <?php }
+                                            } while($res2=$req2->fetch());
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label for="Titulaire" class="form-label">Titulaire ou remplaçant?</label>
+                                <select name='Titulaire' id='Titulaire' required class="form-control">
+                                        <option></option>
+                                        <option value="1">Titulaire</option>
+                                        <option value="0">Remplaçant</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mt-3">
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        </div >
-                    </div>
-                    <input type="hidden" value="<?php echo $id_rencontre ?>" name="id">
-                </form>
+                        <input type="hidden" value="<?php echo $id_rencontre ?>" name="id">
+                        <div class="mt-3">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            </div >
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

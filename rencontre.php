@@ -71,7 +71,7 @@
                                    <th></th>
                               </tr>
                          </thead>
-                    <? do {
+                    <?php do {
                          $id = $res['Id_rencontre']; ?>
                          <tbody>
                               <tr>

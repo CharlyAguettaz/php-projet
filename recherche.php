@@ -55,10 +55,6 @@
                <input type="text" name="nom">
                <input type="submit" value="Rechercher"><br />
           </form>
-          <table class="table">
-               
-               
-          </table>
           <?php 
                if (!empty($_POST['nom']) && isset($_POST['nom'])) {
                     $req->execute(array("%".htmlentities($_POST['nom'])."%"));

@@ -7,9 +7,6 @@
     })
 </script>
 <?php
-    if (isset($_POST['id']) && !empty($_POST['id'] )) {
-        $id_rencontre = htmlentities($_POST['id']);
-    }
     $db = 'football';
     $login="root";
     $mdp="";
@@ -20,6 +17,9 @@
         die('Error :' . $e->getMessage());
     }
 
+    if (isset($_POST['id']) && !empty($_POST['id'] )) {
+        $id_rencontre = htmlentities($_POST['id']);
+    }
     $req = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Id_rencontre LIKE ?");
     $req->execute(array($id_rencontre));
     $res=$req->fetch();
@@ -40,8 +40,9 @@
     if (isset($_POST['joueurAjoutee']) && !empty($_POST['joueurAjoutee']) && isset($_POST['Titulaire'])) {
         $numLicence = $_POST['joueurAjoutee'];
         $titulaire= $_POST['Titulaire'];
-        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire,Note,Titulaire) VALUES(?,?,'','',0,?)");
-        $req5->execute(array($id_rencontre,$numLicence,$titulaire));
+        $position = $_POST['Position'];
+        $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire,Note,Titulaire) VALUES(?,?,?,'',0,?)");
+        $req5->execute(array($id_rencontre,$numLicence,$position,$titulaire));
     } 
 
     if(isset($_POST['supprimer']) && !empty($_POST['supprimer'])) {
@@ -55,26 +56,6 @@
         $reqEditer = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ? AND numLicence LIKE ?");
         $reqEditer->execute(array($id_rencontre,$numLicence));
         $resEditer = $reqEditer->fetch();
-    }
-    if (isset($_POST['joueurAjoutee']) && !empty($_POST['joueurAjoutee']) && isset($_POST['Position']) && !empty($_POST['Position']) && isset($_POST['id']) && !empty($_POST['id'])) {
-        $id = $_POST['id'];
-        $numLicence = $_POST['joueurAjoutee'];
-        $position = $_POST['Position'];
-        $req8 = $linkpdo->prepare("UPDATE football.participant SET Position = ?
-                                    WHERE participant.numLicence = ?
-                                    AND participant.Id_rencontre = ?");
-        $req8->execute(array($position,$numLicence,$id));
-    }
-
-        if (isset($_POST['joueurAjoutee']) && !empty($_POST['joueurAjoutee']) && isset($_POST['id']) && !empty($_POST['id'])) {
-            $id = $_POST['id'];
-            $numLicence = $_POST['joueurAjoutee'];
-            $req9 = $linkpdo->prepare("SELECT Position FROM football.participant 
-                                        WHERE participant.numLicence = ?
-                                        AND participant.Id_rencontre = ?");
-            $req9->execute(array($numLicence,$id));
-            $res9 = $req9->fetch();
- 
     } 
 ?>
 
@@ -157,7 +138,7 @@
                             <td><?php echo $res6['nom']; ?></td>
                             <td><?php echo $res6['prenom']; ?></td>
                             <td><?php if($res4['Titulaire']){echo "Titulaire";} else {echo "Remplaçant";} ?></td>
-                            <td><?php echo $res9['Position']; ?></td>
+                            <td><?php echo $res4['Position']; ?></td>
                             <td><?php echo $res4['Note']."/10"; ?></td>
                             <td><?php if ($res4['Commentaire'] == '') {echo "Commentaire à éditer";} else { ?> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CommentaireModal"> Voir le commentaire </button> <?php ;} ?></td>
                             <td><form action="detailsRencontreEditer.php" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="editer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary"> Editer </button></form></td>

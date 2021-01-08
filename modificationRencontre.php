@@ -1,5 +1,8 @@
 <?php
-
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
 
     if (!empty($_POST['date']) && !empty($_POST['heure']) && !empty($_POST['adversaire']) && !empty($_POST['lieu'])) {
         $id_rencontre = htmlentities($_POST['Id_rencontre']);

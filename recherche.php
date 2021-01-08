@@ -1,17 +1,19 @@
 <?php
-          $db = 'football';
-          $login = 'root';
-          $mdp = '';
-          try {
-               $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login,$mdp);
-          }
-          catch (Exeption $e) {
-               die('Error :' . $e->getMessage());
-          }
-          $req = $linkpdo->prepare("SELECT * FROM football.players WHERE nom LIKE ?");
-          $req2 = $linkpdo->prepare("SELECT * FROM football.players");
-
-
+     session_start();
+     if ($_SESSION['user'] != 'root') {
+         header("location:index.php");
+     }
+     $db = 'football';
+     $login = 'root';
+     $mdp = '';
+     try {
+          $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login,$mdp);
+     }
+     catch (Exeption $e) {
+          die('Error :' . $e->getMessage());
+     }
+     $req = $linkpdo->prepare("SELECT * FROM football.players WHERE nom LIKE ?");
+     $req2 = $linkpdo->prepare("SELECT * FROM football.players");
 ?>
 <html>
      <head>

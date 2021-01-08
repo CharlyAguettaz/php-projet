@@ -1,4 +1,8 @@
-<?php 
+<?php
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence'])) {
         $numLicence = htmlentities($_POST['numLicence']);
         $nom = htmlentities($_POST['nom']);

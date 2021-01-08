@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
     if (!empty($_POST['id']) && isset($_POST['id'])) {
         $db = 'football';
         $login = 'root';

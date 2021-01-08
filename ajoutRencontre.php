@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
     if (!empty($_POST['date']) && !empty($_POST['heure']) && !empty($_POST['adversaire']) && !empty($_POST['lieu'])) {
         $date = htmlentities($_POST['date']);
         $heure = htmlentities($_POST['heure']); 

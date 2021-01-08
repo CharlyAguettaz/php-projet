@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
           $db = 'football';
           $login = 'root';
           $mdp = '';

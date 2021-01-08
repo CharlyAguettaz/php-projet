@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if ($_SESSION['user'] != 'root') {
+        header("location:index.php");
+    }
     if  (isset($_POST['id']) && !empty($_POST['id'])) {  
 
         $id = htmlentities($_POST['id']);

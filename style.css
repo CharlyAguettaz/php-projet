@@ -30,5 +30,5 @@ table, th, td{
 }
 
 .none{
-    border:none;
+    border-collapse: collapse;
 }

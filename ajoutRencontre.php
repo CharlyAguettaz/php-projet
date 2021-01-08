@@ -17,7 +17,7 @@
         try {
             $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
         }
-        catch (Exeption $e) {
+        catch (Exception $e) {
             die('Error :' . $e->getMessage());
         }
         $req2 = $linkpdo->prepare("SELECT * FROM football.rencontre WHERE Date_rencontre LIKE ?");

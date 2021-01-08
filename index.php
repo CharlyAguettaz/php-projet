@@ -10,7 +10,7 @@
         try {
             $linkpdo = new PDO("mysql:host=localhost;dname=$db",$login, $mdp);
         }
-        catch (Exeption $e) {
+        catch (Exception $e) {
             die('Error :' . $e->getMessage());
         }
         $req = $linkpdo->prepare("SELECT * FROM football.users WHERE username LIKE :username AND password LIKE :password");
@@ -23,7 +23,7 @@
                 } else {
                     $user = "root";
                     $_SESSION['user'] = $user;
-                    header('location:ajoutJoueur.php');
+                    header('location:recherche.php');
                 }
             } while($res=$req->fetch());
         } else {

@@ -37,7 +37,7 @@
         $req3->execute(array('points_adversaire' => $Points_adversaire,'points_equipe' => $Points_equipe,'Id_rencontre' => $id_rencontre));
     }
 
-    if (isset($_POST['joueurAjoutee']) && !empty($_POST['joueurAjoutee']) && isset($_POST['Titulaire']) && !empty($_POST['Titulaire'])) {
+    if (isset($_POST['joueurAjoutee']) && !empty($_POST['joueurAjoutee']) && isset($_POST['Titulaire'])) {
         $numLicence = $_POST['joueurAjoutee'];
         $titulaire= $_POST['Titulaire'];
         $req5 = $linkpdo->prepare("INSERT INTO football.participant(Id_rencontre,numLicence,Position,Commentaire,Note,Titulaire) VALUES(?,?,'','',0,?)");
@@ -50,6 +50,12 @@
         $reqSupp->execute(array($numLicence));
     }
 
+    if (isset($_POST['editer']) && !empty($_POST['editer'])){
+        $numLicence=$_POST['editer'];
+        $reqEditer = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ? AND numLicence LIKE ?");
+        $reqEditer->execute(array($id_rencontre,$numLicence));
+        $resEditer = $reqEditer->fetch();
+    }
 ?>
 
 <html>
@@ -134,7 +140,7 @@
                             <td><?php if ($res4['Position'] == '') {echo "Position à éditer";} else {echo $res4['Position'];} ?></td>
                             <td><?php echo $res4['Note']."/10" ?></td>
                             <td><?php if ($res4['Commentaire'] == '') {echo "Commentaire à éditer";} else { ?> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CommentaireModal"> Voir le commentaire </button> <?php ;} ?></td>
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditerModal"> Editer </button></td>
+                            <td><form action="detailsRencontreEditer.php" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="editer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary"> Editer </button></form></td>
                             <td><form action="<?php $_SERVER['PHP_SELF']?>" method="post"><input type="hidden" name="id" value="<?php echo $id_rencontre?>"><input type="hidden" name="supprimer" value="<?php echo $res4['numLicence']?>"><button type="submit" class="btn btn-primary">Supprimer</button></form></td>
                         <tr>
                     </tbody>

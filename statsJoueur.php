@@ -18,7 +18,7 @@
             $req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ?
                                           AND Titulaire = TRUE
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
             $req3->execute(array($id));
@@ -27,7 +27,7 @@
             $req4 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
                                           AND Titulaire = FALSE
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
             $req4->execute(array($id));
@@ -36,7 +36,7 @@
   
             $req5 = $linkpdo->prepare("SELECT SUM(Note) / COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
             $req5->execute(array($id));
@@ -44,7 +44,7 @@
   
             $req6 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre
                                           AND Points_equipe > Points_adversaire");
@@ -53,7 +53,7 @@
 
             $req7 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND participant.Position = 'AT'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
@@ -62,7 +62,7 @@
 
             $req8 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND participant.Position = 'ML'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
@@ -71,7 +71,7 @@
 
             $req9 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND participant.Position = 'DF'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");
@@ -80,7 +80,7 @@
 
             $req10 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
                                           WHERE players.numLicence = ? 
-                                          AND rencontre.date < DATE
+                                          AND rencontre.Date_rencontre < DATE( NOW() )
                                           AND participant.Position = 'GB'
                                           AND players.numLicence = participant.numlicence
                                           AND rencontre.Id_rencontre = participant.Id_rencontre");

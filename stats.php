@@ -13,19 +13,19 @@
      
      $req = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre 
                                 WHERE Points_equipe > Points_adversaire
-                                AND rencontre.date < DATE" );
+                                AND rencontre.date < DATE( NOW() )" );
      $req->execute();
      $res=$req->fetch();
 
      $req2 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre 
                                 WHERE Points_equipe < Points_adversaire
-                                AND rencontre.date < DATE" );
+                                AND rencontre.date < DATE( NOW() )" );
      $req2->execute();
      $res2=$req2->fetch();
 
      $req3 = $linkpdo->prepare("SELECT COUNT(*) FROM football.rencontre, football.players, football.participant 
                                 WHERE Points_equipe = Points_adversaire
-                                AND rencontre.date < DATE" );
+                                AND rencontre.date < DATE( NOW() )" );
      $req3->execute();
      $res3=$req3->fetch();
 

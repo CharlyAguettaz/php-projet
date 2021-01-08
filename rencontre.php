@@ -83,15 +83,15 @@
                                    <td><?php echo "Agen " . $res['Points_equipe'] . "-" . $res['Points_adversaire'] . " " . $res['Nom_adversaire'] ?></td>
                                    <td><form action="modifierRencontre.php" method="post">
                                         <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                        <input type='submit' value='Modifier'>
+                                        <button type="submit" class="btn btn-primary">modifier</button>
                                    </form><td>
                                    <td><form action="suppressionRencontre.php" method="post">
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
-                                                  <input type='submit' value='Supprimer'><br />
+                                                  <button type="submit" class="btn btn-primary">Suppression</button>
                                    </form><td>
                                    <td><form action="detailsRencontre.php" method="post">
                                         <input type='hidden' value="<?php echo $id ?>" name ='id'>
-                                        <input type='submit' value="Détails du match">
+                                        <button type="submit" class="btn btn-primary">Details de la rencontre</button>
                                    </form><td>
                               </tr>
                          </tbody>

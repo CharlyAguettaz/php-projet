@@ -1,12 +1,11 @@
 <?php
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere']) && !empty($_POST['statut'])) {
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['statut'])) {
         $nom = htmlentities($_POST['nom']);
         $prenom = htmlentities($_POST['prenom']); 
         $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
         $poids = htmlentities($_POST['poids']);
         $taille = htmlentities($_POST['taille']);
         $numLicence = htmlentities($_POST['numLicence']);
-        $postePrefere = htmlentities($_POST['postePrefere']);
         $statut = htmlentities($_POST['statut']);
                 
         $db = 'football';
@@ -29,8 +28,8 @@
                 $uniqueName = md5(uniqid(rand(), true));
                 $newFileName = $uniqueName . $fileExt;
                 move_uploaded_file($_FILES["photo"]["tmp_name"], "photos-m3104/" . $newFileName);
-                $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids, :postePrefere, :statut)");
-                $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut));
+                $req2 = $linkpdo->prepare("INSERT INTO football.players(numLicence, nom, prenom, photo, dateDeNaissance, taille, poids, postePrefere, statut) VALUES(:numLicence, :nom, :prenom, :photo, :dateDeNaissance, :taille, :poids,'NA', :statut)");
+                $req2->execute(array('numLicence' => $numLicence, 'nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'statut' => $statut));
                 if ($req2 != FALSE) {
                   print("Ajout effectuer avec succés");
                 } else {
@@ -141,7 +140,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 30px;">Enregister</button>
                 </div>
             </form>
     </body>

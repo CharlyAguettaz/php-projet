@@ -1,12 +1,11 @@
 <?php 
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence']) && !empty($_POST['postePrefere'])) {
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['dateDeNaissance']) && !empty($_POST['poids']) && !empty($_POST['taille']) && !empty($_POST['numLicence'])) {
         $numLicence = htmlentities($_POST['numLicence']);
         $nom = htmlentities($_POST['nom']);
         $prenom = htmlentities($_POST['prenom']); 
         $dateDeNaissance = htmlentities($_POST['dateDeNaissance']);
         $poids = htmlentities($_POST['poids']);
         $taille = htmlentities($_POST['taille']);
-        $postePrefere = htmlentities($_POST['postePrefere']);
         $statut = htmlentities($_POST['statut']);
 
         $db = 'football';
@@ -31,8 +30,8 @@
             $uniqueName = md5(uniqid(rand(), true));
             $newFileName = $uniqueName . $fileExt;
             move_uploaded_file($_FILES["photo"]["tmp_name"], "photos-m3104/" . $newFileName);
-            $req = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, postePrefere = :postePrefere, statut = :statut WHERE numLicence = :numLicence");
-            $req->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'postePrefere' => $postePrefere, 'statut' => $statut, 'numLicence' => $numLicence));
+            $req = $linkpdo->prepare("UPDATE football.players SET nom = :nom, prenom = :prenom, photo = :photo, dateDeNaissance = :dateDeNaissance, taille = :taille, poids = :poids, statut = :statut WHERE numLicence = :numLicence");
+            $req->execute(array('nom' => $nom, 'prenom' => $prenom, 'photo' => $newFileName, 'dateDeNaissance' => $dateDeNaissance,  'taille' => $taille, 'poids' => $poids, 'statut' => $statut, 'numLicence' => $numLicence));
             if ($req != FALSE) {
                 print("Modification effectué avec succés !");
             } else {

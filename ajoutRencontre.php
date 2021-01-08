@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-light" style="margin-top: 30px;">Enregister</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 30px;">Enregister</button>
             </div>
         </form>
     </body>

@@ -28,6 +28,7 @@
     $req4 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ?");
     $req4->execute(array($id_rencontre));
     $res4 = $req4->fetch();
+    $req7 = $linkpdo->prepare("SELECT * FROM football.participant WHERE Id_rencontre LIKE ? AND numLicence LIKE ?");
     
     if (isset($_POST['Points_equipe']) && isset($_POST['Points_adversaire'])) {
         $Points_equipe=htmlentities($_POST['Points_equipe']);
@@ -159,7 +160,9 @@
                                         $res2=$req2->fetch();
                                         if ($res2 != false) {
                                             do { 
-                                                if ($res2['statut'] == "Actif" && $res4['numLicence'] == '') { ?>
+                                                $req7->execute(array($id_rencontre,$res2['numLicence']));
+                                                $res7=$req7->fetch();
+                                                if ($res2['statut'] == "Actif" && $res7 == FALSE) { ?>
                                                     <option value='<?php echo $res2['numLicence'] ?>'><?php echo $res2['nom']." ".$res2['prenom'] ?></option>
                                                 <?php }
                                             } while($res2=$req2->fetch());

@@ -146,8 +146,55 @@
         </nav>
     </header>
      <body>
-          <h1>Stats de <?php echo $res2['nom'] . " " . $res2['prenom'] ?></h1><br/>
 
+     <h1>Fiche de <?php echo $res2['nom'] . $res2['prenom'] ?> <br /></h1>     
+        <form method="post" enctype="multipart/form-data">
+            <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" value="<?php echo $res2['nom'] ?>" name="nom" id="nom" class="form-control" readonly >
+                    </div>
+                    <div class="col-auto">
+                        <label for="prenom" class="form-label">Prenom</label>
+                        <input type="text" value="<?php echo $res2['prenom'] ?>" name="prenom" id="prenom" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="numLicence" class="form-label">Numéro de licence</label>
+                        <input type="text" value="<?php echo $res2['numLicence'] ?>" name="numLicence" required size="11" minlength ="10" maxlength="10" id="numLicence" class="form-control" readonly>
+                    </div>
+                    <div class="col-auto">
+                        <label for="dateDeNaissance" class="form-label">Date de naissance</label>
+                        <input type="text" value="<?php echo $res2['dateDeNaissance'] ?>" name="dateDeNaissance" id="dateDeNaissance" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="poids" class="form-label">Poids</label>
+                        <input type="text" value="<?php echo $res2['poids'] ?>" name="poids" id="poids" placeholder="kg" class="form-control" readonly >
+                        
+                    </div>
+                    <div class="col-auto">
+                        <label for="taille" class="form-label">Taille</label>
+                        <input type="text" value="<?php echo $res2['taille'] ?>" name="taille" id="taille" placeholder="cm" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+                    <div class="col-auto">
+                        <label for="statut" class="form-label">Statut</label>
+                        <input name='statut' value="<?php echo $res2['statut'] ?>" id="statut" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                        <img src="photos-m3104/<?php echo $res2['photo'] ?>"  class="img-thumbnail rounded-0" style="margin-top: 20px; margin-bottom: 15px;" readonly>
+                </div>
+                <div class="row gy-3 gx-5 align-items-center">
+
+                </div>
+            </div>
+        </form>
+          <h1>Stats de <?php echo $res2['nom'] . " " . $res2['prenom'] ?></h1><br/>
                          <table class='table'>
                               <thead>
                                    <tr>
@@ -159,7 +206,8 @@
 
                                    </tr>
                               </thead>
-                                   <tbody>
+
+                                   <tbody >
                                         <tr>
                                              <td><?php echo $res3[0] ?></td>
                                              <td><?php echo $res4[0] ?></td>
@@ -196,6 +244,5 @@
                                                 
                                         </tr>
                                    </tbody>
-          
      </body>
 </html>

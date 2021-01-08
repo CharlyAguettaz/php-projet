@@ -11,6 +11,7 @@
           $req = $linkpdo->prepare("SELECT * FROM football.players WHERE nom LIKE ?");
           $req2 = $linkpdo->prepare("SELECT * FROM football.players");
 
+
 ?>
 <html>
      <head>

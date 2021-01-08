@@ -21,8 +21,9 @@
             unlink("photos-m3104/".$filename);
         }
         $req = $linkpdo->prepare("DELETE FROM football.players WHERE numLicence = ?");
-        $req->execute(array($id));
-        $res = $req->fetch();
+        $req3 = $linkpdo->prepare("DELETE FROM football.participant WHERE numLicence =?");
+        $req->execute(array($id)); 
+        $req3->execute(array($id));  
 
         if ($req == false) {
             echo "Erreur lors de la suppression";

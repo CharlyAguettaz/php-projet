@@ -15,9 +15,10 @@
         
         $req = $linkpdo->prepare("DELETE FROM football.rencontre WHERE Id_rencontre = ?");
         $req->execute(array($id));
-        $res = $req->fetch();
+        $req2 = $linkpdo->prepare("DELETE FROM football.participant WHERE Id_rencontre = ?")
+        $req2->execute(array($id));
 
-        if ($req == false) {
+        if ($req == false && $req2 == false) {
             echo "Erreur lors de la suppression";
         } else {
             echo "Rencontre supprimé avec succés";

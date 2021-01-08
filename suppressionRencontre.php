@@ -19,7 +19,7 @@
         
         $req = $linkpdo->prepare("DELETE FROM football.rencontre WHERE Id_rencontre = ?");
         $req->execute(array($id));
-        $req2 = $linkpdo->prepare("DELETE FROM football.participant WHERE Id_rencontre = ?")
+        $req2 = $linkpdo->prepare("DELETE FROM football.participant WHERE Id_rencontre = ?");
         $req2->execute(array($id));
 
         if ($req == false) {
@@ -28,7 +28,7 @@
             echo "Rencontre supprimé avec succés";
         }
 
-        header("location:".  $_SERVER['HTTP_REFERER']); 
+        header("location:rencontre.php"); 
     }  
       
 ?>

@@ -10,6 +10,7 @@
           }
           if(isset($_POST['id']) && !empty($_POST['id'])){
             $id = $_POST['id'];
+                    
 
             $req2 = $linkpdo->prepare("SELECT * FROM football.players WHERE players.numLicence = ?");
             $req2->execute(array($id));
@@ -46,6 +47,30 @@
                                           AND Points_equipe > Points_adversaire");
             $req6->execute(array($id));
             $res6 = $req6->fetch();
+
+            $req7 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
+                                          WHERE players.numLicence = ? 
+                                          AND participant.Position = 'AG'
+                                          AND players.numLicence = participant.numlicence
+                                          AND rencontre.Id_rencontre = participant.Id_rencontre");
+            $req7->execute(array($id));
+            $res7 = $req7->fetch();
+
+            $req8 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
+                                          WHERE players.numLicence = ? 
+                                          AND participant.Position = 'DG'
+                                          AND players.numLicence = participant.numlicence
+                                          AND rencontre.Id_rencontre = participant.Id_rencontre");
+            $req8->execute(array($id));
+            $res8 = $req8->fetch();
+
+            $req9 = $linkpdo->prepare("SELECT COUNT(*) FROM football.participant, football.players, football.rencontre 
+                                          WHERE players.numLicence = ? 
+                                          AND participant.Position = 'DD'
+                                          AND players.numLicence = participant.numlicence
+                                          AND rencontre.Id_rencontre = participant.Id_rencontre");
+            $req9->execute(array($id));
+            $res9 = $req9->fetch();
           }
           
 
@@ -101,8 +126,8 @@
                                         <th scope="col">Remplacent</th>
                                         <th scope="col">Note moyenne</th>
                                         <th scope="col">% de victoire</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th scope="col">Poste préféré</th>
+
                                    </tr>
                               </thead>
                                    <tbody>
@@ -110,12 +135,24 @@
                                              <td><?php echo $res3[0] ?></td>
                                              <td><?php echo $res4[0] ?></td>
                                              <td><?php echo $res5[0] ?></td>
-                                             <td><?php if($res3[0] == 0){
+                                             <td><?php 
+                                             if($res3[0] == 0){
                                                  echo "0%";
                                             }
                                              else{
                                                  echo $res6[0] / $res3[0] * 100 . "%"; 
                                             } ?></td>
+                                            <td><?php 
+                                            if($res7[0] >= $res8[0] && $res7[0] >= $res9[0]){
+                                                echo "Attaquant";
+                                            }   
+                                            elseif($res8[0] >= $res9[0]){
+                                                echo "Millieu";
+                                            }
+                                            else{
+                                                echo "Defenceur";
+                                            }
+                                            ?></td>
                                                 
                                         </tr>
                                    </tbody>

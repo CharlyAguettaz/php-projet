@@ -10,6 +10,7 @@
           }
           $req = $linkpdo->prepare("SELECT * FROM football.players WHERE nom LIKE ?");
           $req2 = $linkpdo->prepare("SELECT * FROM football.players");
+
 ?>
 <html>
      <head>
@@ -100,6 +101,10 @@
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
                                                   <input type='submit' value='Supprimer'><br />
                                              </form><td>
+                                             <td><form action="statsJoueur.php" method="post">
+                                                  <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                                  <input type='submit' value='Stats'><br />
+                                             </form><td>
                                         </tr>
                                    </tbody>
                                    <?php
@@ -149,6 +154,10 @@
                                              <td><form action="Suppression.php" method="post">
                                                   <input type='hidden' value="<?php echo $id ?>" name='id'>
                                                   <input type='submit' value='Supprimer'><br />
+                                             </form><td>
+                                             <td><form action="statsJoueur.php" method="post">
+                                                  <input type='hidden' value="<?php echo $id ?>" name='id'>
+                                                  <input type='submit' value='Stats'><br />
                                              </form><td>
                                         </tr>
                                    </tbody>
